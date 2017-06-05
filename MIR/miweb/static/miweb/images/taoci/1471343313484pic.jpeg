@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>搜艺搜--古董搜索</title><meta name="keywords" content="搜艺搜 海量搜索古玩收藏，古玩交易，古玩拍卖，古董收藏，古董交易，古董拍卖 打造专业的艺术品搜索品牌" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6070843-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+var timer1=null,timer2=null,flag=false;	
+function M_mouseover(id){
+	if (flag){clearTimeout(timer2);}
+	else{
+	 var _this=document.getElementById(id);
+	 timer1=setTimeout(function(){_this.style.display='block';flag=true;},150);
+    }
+}
+function M_mouseout(id){
+
+			 if (flag){
+				 var _this=document.getElementById(id);
+				 timer2=setTimeout(function(){_this.style.display='none';flag=false;},150);
+			 }else{clearTimeout(timer1);}
+}
+</script>
+<style type="text/css">body{font:12px/18px arial;color:#00e}*{padding:0;margin:0}#r{float:right}#t{padding:3px;font-size:12px}#t,#h p{border-bottom:solid 1px #eee}#t a{margin:0 6px}#g{padding:40px 0 30px;text-align:center}#i{width:648px;margin:10px auto}#i a,b{margin:0 3px 2px 14px;font-size:14px;*margin-left:12px}#n:link,#n:visited,b{color:#FE5802;font-weight:bold}input{vertical-align:middle;font-size:14px}#k{width:520px;font:16px/16px arial;padding:4px 2px;border:solid 1px #6791BB;vertical-align:middle;}#s{width:66px;height:26px}#h{width:420px;margin:30px auto 70px;overflow:hidden}#h a{overflow:hidden;height:18px;width:60px;float:left;display:block;margin:5px 6px 0 0}#f{padding:8px 0;text-align:center;line-height:26px}#f a{margin:0 5px}a{color:#00c} 
+#lk{margin:33px 0 0;font-size:14px;text-align:center;width:530px;overflow:hidden}#k{width:500px; *width:506px}#i{ width:600px; }.gb3 {border-bottom:none;text-decoration:none;}.in_more{ width:60px; overflow:hidden; border:solid 1px #6791BB; padding:0 5px; position:absolute; background:#FFF; *top:18px}.in_more ul li{ height:25px; line-height:25px; overflow:hidden; width:60px}#i .in_more ul li a{ margin:0 0 0 2px}.show .in_more{ display:none; left:10px; }.hovertet .in_more{display:block;}#h{margin:35px auto 70px; }.la{ float:left}.rb{ float:left; position:relative;}
+</style>
+</head>
+<body>
+<p id="t"><span id="r"><script type=text/javascript src="/login.jsp"></script></span><a href="#">搜艺搜</a></p>
+<p id="g"><img src="bg/lb.gif" /></p>
+
+<div id="i" class="show">
+	<div class="la">
+		<a id="n" href="http://pm.findart.com.cn/">拍卖</a>
+	    <a href="http://www.songpai.net/" target="_blank" >拍品征集</a>
+		<a href="http://trade.findart.com.cn/">交易</a>
+		<a href="http://zx.findart.com.cn/">资讯</a>
+		<a href="http://yishujia.findart.com.cn/">艺术家</a>
+		<a href="http://bbs.findart.com.cn/">论坛</a>
+		<a href="http://price.findart.com.cn/">价格</a>
+		<a href="http://art.findart.com.cn/">收藏大全</a>
+	</div>
+	<div class="rb" onmouseover="M_mouseover('in')" onmouseout="M_mouseout('in')">
+		<a class="gb3" style="cursor:pointer;"    ><u>更多</u> <small><img src="bg/lan.gif"/></small></a>
+		<div id="in" class="in_more" style="display:none">
+			<ul>
+			<li><a href="http://www.findart.com.cn/coin/">钱币收藏</a></li>
+			<li><a href="http://guohua.findart.com.cn/">国画</a></li>
+			<li><a href="http://www.findart.com.cn/youhua/">油画</a></li>
+			<li><a href="http://yuqi.findart.com.cn/">玉器</a></li>
+			<li><a href="http://taoci.findart.com.cn/">陶瓷</a></li>
+			<li><a href="http://www.findart.com.cn/youpiao/">邮票</a></li>
+			<li><a href="http://www.findart.com.cn/shufa/">书法</a></li>
+			<li><a href="http://www.findart.com.cn/diaosu/">雕塑</a></li>
+			<li><a href="http://www.findart.com.cn/jiaju/">家居</a></li>		
+			<li><a href="http://www.findart.com.cn/jinshizhuanke/">金石篆刻</a></li>
+			<li><a href="http://www.findart.com.cn/jinyintongqi/">金银铜器</a></li>
+			<li><a href="http://www.findart.com.cn/zhubao/">珠宝首饰</a></li>
+			<li><a href="http://www.findart.com.cn/wenxian/">文献</a></li>
+			<li><a href="http://www.findart.com.cn/gongyipin/">工艺品</a></li>
+			<li><a href="http://pmzp.findart.com.cn/">拍卖作品网</a></li>
+				<li><a href="http://huajia.findart.com.cn">画家作品在线收藏</a></li>
+			<li><a href="http://tag.findart.com.cn/authorlist/">艺术收藏</a></li>
+				<li><a href="http://pmsp.findart.com.cn/">拍品送拍网</a></li>
+			</ul>
+		</div>
+	</div>
+	<form method="get" action="http://pm.findart.com.cn/sopmp.jsp" name="soForm">
+	<input id="k" name="key" value=""/>
+	<input type="submit" value="搜艺搜" id="s" />
+	</form>
+	<div id="lk">
+		<a id="n" href="http://www.findart.com.cn/coin/zhibi/">纸币</a>
+		<a href="http://guohua.findart.com.cn/">国画</a>
+		<a href="http://www.findart.com.cn/youhua/">油画</a>
+		<a href="http://yuqi.findart.com.cn/">玉器</a>
+		<a href="http://taoci.findart.com.cn/">陶瓷</a>
+		<a href="http://www.findart.com.cn/youpiao/">邮票</a>
+		<a href="http://www.findart.com.cn/shufa/">书法</a>
+		<a href="http://www.findart.com.cn/diaosu/">雕塑</a>
+		<a href="http://www.findart.com.cn/jiaju/">家居</a>		
+	</div>
+	<div id="lk">
+		<a href="http://www.findart.com.cn/jinshizhuanke/">金石篆刻</a>		
+		<a href="http://www.findart.com.cn/jinyintongqi/">金银铜器</a>
+		<a href="http://www.findart.com.cn/zhubao/">珠宝首饰</a>
+        <a href="http://artpm.artxun.com">古董拍卖</a>
+		<a href="http://pm.songpai.net">拍卖数据库</a>
+		<a href="http://pmsp.findart.com.cn/">拍品送拍网</a>
+		<a href="http://key.shuoqian.net">文玩拍卖网</a>
+		<a href="http://pmzp.findart.com.cn/">拍卖作品网</a>
+	<a href="http://huajia.findart.com.cn">画家作品在线收藏</a>
+    <a href="http://upsoho.findart.com.cn">梦家装饰画网</a>
+    <a href="http://tag.findart.com.cn/authorlist/">艺术收藏</a>
+	</div>
+	<script>var w=document.soForm.key;w.focus();</script>
+</div>
+<div id="h">
+
+</div>
+	<div style="width:990px;margin:10px auto">
+<iframe height="160px" width="990px" frameborder="0" scrolling="no" src="http://jianbao.artxun.com/product/frames/banner_990.html"></iframe>
+</div>
+<p align="center"><a onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.findart.com.cn')" href="javascript:;">把搜艺搜设为主页</a></p>
+<div id="f">
+<a href="/docs/about.htm">关于我们</a>|<a href="/docs/job.htm">公司招聘</a>|<a href="/docs/hezuo.htm">网站合作</a>|<a href="/docs/link.htm">联系方式</a>|<a href="http://www.art37.com" target="_blank">博艺汇</a>|<a href="/tag.html">标签云</a>|<a href="/docs/miantiao.htm">免责声明</a><br/>
+2009 版权所有·搜艺搜<a href="http://www.miibeian.gov.cn/">京ICP备09001523号</a>&nbsp;&nbsp;京公网安备110108008455号
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/3274683.js"></script>
+<noscript><a href="http://www.51.la/?3274683" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/3274683.asp" style="border:none" /></a></noscript>
+<img src="http://si1.cnzz.com/stat.gif?id=5695" border="0px" width="0px" height="0px" /></div>
+<div style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/3773533.js"></script><noscript><a href="http://www.51.la/?3773533" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/3773533.asp" style="border:none" /></a></noscript></div>
+</body>
+</html>

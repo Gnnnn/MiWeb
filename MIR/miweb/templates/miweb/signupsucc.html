@@ -1,0 +1,17 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'miweb/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form action="" method="post" class="form-signin" style="text-align: center;">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">上海大学图像检索系统</h2>
+            <h3 style="color: red;">注册成功，已自动登录</h3>
+        </form>
+        <div style="max-width: 300px; text-align: center; margin: auto;">
+            <button class="btn btn-lg btn-primary btn-block" style="width: 300px; text-align: center;"><a href="/" style="color: white;">返回首页</a></button>
+        </div>
+    </div>
+{% endblock %}

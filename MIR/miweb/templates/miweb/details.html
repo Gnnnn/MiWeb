@@ -1,0 +1,385 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+{% block title %}检索详情&nbsp|&nbsp{% endblock %}
+{% block content %}
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF; height: auto;">
+   <div class="container-fluid" style="height: auto;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="margin-left: 10px;">
+            <a class="navbar-brand" href="/" style=" padding: 7px 5px 5px 5px; font-family: '微软雅黑'; color: rgb(64,142,185); font-size:28px;height: auto; line-height:25px;">
+                <!--<img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">-->
+                MI<span class="glyphicon glyphicon-search" aria-hidden="true" style="margin:3px 3px 0px 5px;font-size: 35px;"></span>MS
+                <br><span style="font-size: 1px;">材料图像检索管理系统</span>
+            </a>
+        </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" role="search" style="margin-top:16px; margin-bottom:10px;" action="/miweb/results/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ search_content }}" id="your_search" name="your_search" style="width: 300px;">
+                </div>
+                <select class="form-control" style="font-size: 17px; margin-top: 0px; padding: 7px 4px 3px 5px; height: auto;" name="artiorimg">
+                    <option>图像</option>
+                    <option>资讯</option>
+                </select>
+                <button type="submit" class="btn btn-primary" >检索 &raquo;</button>
+                <div class="dropdown" style="float: right; margin-top: 2px;">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        图像等级
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="min-width: 95px;">
+                            <li>
+                                <div class="mycheck">
+                                    <input id="checkbox1" type="checkbox"/>
+                                    <label for="checkbox1"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">A</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input type="checkbox" id="checkbox2"/>
+                                    <label for="checkbox2"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">B</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input  type="checkbox" id="checkbox3" />
+                                    <label for="checkbox3"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">C</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input  type="checkbox" id="checkbox4" />
+                                    <label for="checkbox4"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">D</span>
+                                </div>
+                            </li>
+                      </ul>
+                </div>
+                <br>
+                <div style="font-size: 10px; margin-top:6px; margin-left: 3px;">
+                    <span style="color: black;">热门搜索：</span>
+                    <span style="color: black;">马氏体</span>
+                    <span style="color: black;">珠光体</span>
+                </div>
+            </form>
+            {% if loginorout %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/miweb/login/">登录</a></li>
+                    <li><a href="/miweb/signup">注册</a></li>
+                    <li><a href="/">首页</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right" style="font-family: '微软雅黑';">
+                    <li style="font-size: 15px;" class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="padding: 8px;">
+                            <span class="user-info">
+                                <small>欢迎您，</small>
+                                <span style="font-size:14px; color:">{{ name }}</span>
+                            </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/miweb/personinfo">
+                                    <i class="icon-cog"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/miweb/safepass">
+                                    <i class="icon-user"></i>
+                                    密码修改
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/miweb/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;" >
+                        <a data-toggle="dropdown"  href="#" style="padding: 8px;">
+                            <span><small>消息(<strong style="color: red;" id="allnewsnumber"></strong>)</small></span>
+
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="messagebox">
+                            <li class="dropdown-header">
+                                <i class="icon-envelope-alt"></i>
+                                <span id="showm"></span>&nbsp;Messages
+                            </li>
+
+                            <li id="fnews">
+
+                            </li>
+
+                            <li id="mnews">
+                            </li>
+
+                            <li id="wmnews">
+                            </li>
+
+                            <li>
+                                <a href="/miweb/personnews">
+                                    查看所有消息
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;"><a href="/miweb/begin" style="padding: 8px;"><small>更多功能</small><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-left: 5px;"></span></a></li>
+                </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" style="padding-top: 40px;">
+    <div style="background-color:white; float: left; width:950px; padding:10px;">
+        <a onmousedown="MI.Bos('wQBtnBigImgQun')" href="/static/miweb/images/{{ img.loadway }}" class="wqLink" style="float :left; width: 550px;">
+            <div style=" float: left;width:550px;" ><img src="/static/miweb/images/{{ img.loadway }}" width="100%" height="352px" ></div>
+        </a>
+
+        <div class="picturecontent" style="width: 38.5%; height: 352px; float: left; word-wrap:break-word; margin-left:1.5%;">
+            <p style="margin-top:5px;">【图片名称】：{{ pname }}
+                <button class="glyphicon glyphicon-share-alt" aria-hidden="true" style="float: right;" title="分享"></button>
+                <button class="glyphicon glyphicon-star-empty" id="collect" aria-hidden="true" style="float: right;" title="收藏"></button>
+                <button class="glyphicon glyphicon-download-alt" aria-hidden="true" style="float: right;" title="下载"></button>
+            </p>
+            <p>【作者】：{{ img.author }}</p>
+            <p>【机构】：</p>
+            <p>【来源】：{% if mess_ly %}网络（<a href="{{ img.hosturl }}">原网址</a>）{% else %}用户上传{% endif %}<span style="float: right;">【仪器】：{{ img.tool }}</span></p>
+            <p>【发表时间】：{{ img.createtime|date:"Y-m-d" }} <span style="float: right;">【浏览量】：{{ img.view }}</span> </p>
+            <p>【关键字】：</p>
+            <p>【审阅情况】：{% if img.check %}已审阅{% else %}未审阅{% endif %}</p>
+            <p>【审阅意见】：</p>
+        </div>
+
+        <div style="word-wrap: break-word; margin-top:16px; float: left; width: 100%;"><p>【详情】：{{ img.content }}</p>
+        </div>
+        <div id="comment">
+            <h3 id="comnumber" style="border-bottom: 2px solid black; margin-top:16px; float: left; width: 100%;"></h3>
+            <ul id="comul" style="list-style:none; padding-left: 5px; line-height:30px;">
+
+            </ul>
+            {% if loginorout %}
+               <li><a href="/miweb/login/">登录后可评论</a></li>
+            {% else %}
+               <div id="commentbox">
+                       <textarea id="com_content" name="com_content" style="border-radius:4px; overflow: auto; width:100%; height: 120px; margin-top: 20px; resize:none;" placeholder="输入你的评论吧"></textarea>
+                       <br />
+                       <button class="btn btn-default" type="button" onclick="javascript: writecomments()">发布</button>
+               </div>
+             {% endif %}
+         </div>
+    </div>
+
+    <div class="screen" style="float: right; height: 100%; width: 175px; background-color: white; margin-left: 10px; margin-top: 0px; text-align: center;">
+        <hr style="margin: 0px;">
+        <h4>高级搜索</h4>
+        <hr style="margin: 0px;">
+    </div>
+
+
+</div>
+<style>
+.mycheck {
+    width: 25px;
+    margin: 5px 10px;
+    position: relative;
+}
+.mycheck input[type=checkbox] {
+    visibility: hidden;
+}
+
+.mycheck label {
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border:2px solid #ccc;
+    float: left;
+}
+.mycheck label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 6px;
+    left: 6px;
+    border: 2px solid #333;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.mycheck label:hover::after {
+ opacity: 0.5;
+}
+.mycheck input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+</style>
+
+<script>
+    var ccc = 0;
+    var x={{ collectornot }};
+    if(x==0){
+        ccc=1;
+        $("#collect").attr({
+            "class" : "glyphicon glyphicon-star",
+        });
+    }
+    else{
+        ccc=0;
+        $("#collect").attr({
+            "class" : "glyphicon glyphicon-star-empty",
+        });
+    }
+    $("button#collect").click(function(){
+        if(ccc==0){
+            $("#collect").attr({
+            "class" : "glyphicon glyphicon-star",
+             });
+             ccc=1;
+             $.post("/miweb/controller/con_collect/",
+             {
+                 cotag:"0",
+                 costatus:"0",
+                 coabid:"{{ img.abid }}",
+                 csrfmiddlewaretoken: '{{ csrf_token }}',
+             },
+             function(data,status){
+                 $.each(data, function(i,item){
+                       alert(item.able)
+                 });
+             });
+        }
+        else{
+            $("#collect").attr({
+            "class" : "glyphicon glyphicon-star-empty",
+             });
+             ccc=0;
+             $.post("/miweb/controller/con_collect/",
+             {
+                 cotag:"0",
+                 costatus:"1",
+                 coabid:"{{ img.abid }}",
+                 csrfmiddlewaretoken: '{{ csrf_token }}',
+             },
+             function(data,status){
+                 $.each(data, function(i,item){
+                     alert(item.able)
+                 });
+             });
+        }
+
+    });
+
+    $(document).ready(function(){
+        getcomments();
+    });
+
+
+    function getcomments(){
+        $.post("/miweb/controller/con_details/",
+        {
+            dtag:"0",
+            dstatus:"0",
+            dpicid:"{{ img.abid }}",
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        function(data,status){
+            $("#comul").empty()
+            var comnum = 0;
+            $.each(data, function(i,item){
+                $("#comul").append("<li id=\"" + "li" + item.anwid + "\"><span><b>" + item.nicheng + "</b></span><span id=\"" + "com" + item.anwid + "\"><b>" + item.moditime + "</b></span></br>" + item.anwser + "</li>"
+			    );
+			    var cid = "#com" + item.anwid
+			    var lid = "#li" + item.anwid
+			    $(cid).attr("style", "float: right");
+			    if (i == 0){
+			    }
+			    else{
+			        $(lid).attr("style", "border-top: 1px solid white");
+			    }
+			    comnum = comnum + 1;
+            });
+            $("#comnumber").text("评论(共" + comnum + "条)")
+        });
+    }
+
+    function writecomments(){
+        var comcontent = $("#com_content").val();
+        if (comcontent == ""){
+            alert("评论不能为空！")
+        }
+        else{
+            $.post("/miweb/controller/con_details/",
+            {
+                dtag:"1",
+                dstatus:"0",
+                dpicid:"{{ img.abid }}",
+                dcommnet:comcontent,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            function(data,status){
+                $.each(data, function(i,item){
+                    alert(item.dmess)
+                });
+                getcomments();
+            });
+        }
+    }
+
+</script>
+<script>
+$(document).ready(
+    homenews()
+);
+
+function homenews(){
+   $.post("/miweb/controller/con_rightnews/",
+    {
+        ntag:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#allnewsnumber").text(data[0].long);
+        $("#showm").text(data[0].long);
+        if (data[0].friendnews > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].friendnews + "<span>条待处理消息</span></a>");
+        }
+        if (data[0].message > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].message + "<span>条未阅读通知</span></a>");
+        }
+        if (data[0].wmessage > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>系统向您发来了</span>" + data[0].wmessage + "<span>条消息</span></a>");
+        }
+    });
+}
+</script>
+{% endblock %}

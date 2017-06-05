@@ -1,0 +1,35 @@
+
+
+
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta name="Robots" content="noindex,nofollow,noarchive">
+<title>正在进入详细介绍页面，请等待3秒钟……</title>
+</head>
+<body>
+
+
+<p align='center'>正在进入详细介绍页面，请等待3秒钟……</p><p  align="center"><a href="http://d.fanve.com/go/?i=687474703&key=2014" id="goto"   rel="nofollow">如果网页没有打开，请点击这里》》》</a></p> 
+
+<script>
+	function invokeClick(element) {
+		if(element.click)element.click();
+		else if(element.fireEvent)element.fireEvent('onclick');
+		else if(document.createEvent){
+		var evt = document.createEvent("MouseEvents");
+		evt.initEvent("click", true, true);
+		element.dispatchEvent(evt);
+		}
+	}
+	try{
+		document.getElementById("goto").click();
+	}catch(e){
+		try{
+			invokeClick(document.getElementById("goto"));
+		}catch(x){
+			location.href="http://d.fanve.com/go/?i=687474703&key=2014";
+		}
+	}
+			</script>
+</body></html>

@@ -1,0 +1,361 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            消息通知
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+<div class="col-sm-12 col-md-9 aw-main-content" style="margin-top: 20px;">
+	<ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+		<li id="untli" class="active"><a href="javascript: untnews()">未处理</a></li>
+        <li id="altli" class=""><a href="javascript: altnews()">已处理</a></li>
+        <li id="inforli" class=""><a href="javascript: informnews()">通知</a></li>
+        <li id="sysnewsli" class=""><a href="javascript: sysnews()">系统消息</a></li>
+	</ul>
+
+	<div class="aw-item active" data-topic-id="">
+		<div class="aw-question-content" style="margin-top: 10px; margin-left: 5px;">
+            <div id="fn">
+
+            </div>
+		</div>
+	</div>
+</div>
+<script>
+
+$(document).ready(function(){
+    untnews();
+});
+
+function sysnews(){
+   $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"0",
+        nstatus:"2",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("li").attr("class","");
+        $("#sysnewsli").attr("class","active");
+        $("#fn").empty();
+        $("#fn").append("<hr><h4>未阅读</h4>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                if (item.mess == "3"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: getsysmoreinfo(" + item.mess4 + ")\">查看详情</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:black")
+                }
+                if (item.mess == "4"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: marksysinfo(" + item.mess4 + ")\">标记已阅</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:black;")
+                }
+            }
+        });
+    });
+
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"1",
+        nstatus:"2",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#fn").append("<hr>");
+        $("#fn").append("<hr><h4>已阅读</h4>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                if (item.mess == "3"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: getsysmoreinfo(" + item.mess4 + ")\">查看详情</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:grey")
+                }
+                if (item.mess == "4"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: marksysinfo(" + item.mess4 + ")\">标记已阅</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:grey")
+                }
+            }
+        });
+        $("#fn").append("<hr>");
+    });
+}
+
+function untnews(){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"0",
+        nstatus:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("li").attr("class","");
+        $("#untli").attr("class","active")
+        $("#fn").empty()
+        $("#fn").append("<hr>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                $("#fn").append("<div id=\"" + item.userid + "\"><p><a>" + item.username + "</a>&nbsp&nbsp请求添加您为好友&nbsp&nbsp<button onclick=nagree('" + item.userid + "')>同意</button>&nbsp&nbsp<button onclick=nrefuse('" + item.userid + "')>拒绝</button></p></div>"
+			    );
+            }
+        });
+        $("#fn").append("<hr>");
+    });
+}
+
+function altnews(){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"1",
+        nstatus:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+
+        $("li").attr("class","");
+        $("#altli").attr("class","active");
+        $("#fn").empty();
+        $("#fn").append("<hr>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                $("#fn").append("<div><p>" + item.mess + "&nbsp&nbsp<a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "</p></div>"
+                );
+			}
+        });
+        $("#fn").append("<hr>");
+    });
+}
+
+function informnews(){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"0",
+        nstatus:"1",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("li").attr("class","");
+        $("#inforli").attr("class","active");
+        $("#fn").empty();
+        $("#fn").append("<hr><h4>未阅读</h4>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                if (item.mess == "3"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: getmoreinfo(" + item.mess4 + ")\">查看详情</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:black")
+                }
+                if (item.mess == "4"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: markinfo(" + item.mess4 + ")\">标记已阅</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:black;")
+                }
+            }
+        });
+    });
+
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"1",
+        nstatus:"1",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#fn").append("<hr>");
+        $("#fn").append("<hr><h4>已阅读</h4>");
+        $.each(data, function(i,item){
+            if (item.userid == 0){
+                 $("#fn").append("<p>" + item.username + "</p>"
+                 );
+            }
+            else{
+                if (item.mess == "3"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: getmoreinfo(" + item.mess4 + ")\">查看详情</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:grey")
+                }
+                if (item.mess == "4"){
+                    $("#fn").append("<div id=\"" + item.mess4 + "\"><p><a>" + item.username + "</a>&nbsp&nbsp" + item.mess2 + "&nbsp&nbsp<a href=\"/miweb/details/" + item.mess1 + "\">" + item.mess3 + "</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=\"javascript: markinfo(" + item.mess4 + ")\">标记已阅</a></p></div>"
+                    );
+                    $("#" + item.mess4 + "").attr("style","color:grey")
+                }
+            }
+        });
+        $("#fn").append("<hr>");
+    });
+}
+
+function getmoreinfo(newsid){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"2",
+        nstatus:"3",
+        userid:"{{ userid }}",
+        newsid:newsid,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            alert("评论内容：" + item.mess1)
+        });
+        informnews();
+    });
+}
+
+function getsysmoreinfo(newsid){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"2",
+        nstatus:"3",
+        userid:"{{ userid }}",
+        newsid:newsid,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            alert("审阅详情：" + item.mess1)
+        });
+        sysnews();
+    });
+}
+
+function markinfo(newsid){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"2",
+        nstatus:"3",
+        userid:"{{ userid }}",
+        newsid:newsid,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            alert(item.mess1)
+        });
+        informnews();
+    });
+}
+
+function marksysinfo(newsid){
+    $.post("/miweb/controller/newsboxdata/",
+    {
+        ntag:"2",
+        nstatus:"3",
+        userid:"{{ userid }}",
+        newsid:newsid,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            alert(item.mess1)
+        });
+        sysnews();
+    });
+}
+
+function nagree(needid){
+	$.post("/miweb/controller/con_fagree/",
+    {
+        fagree:"1",
+        fromid:needid,
+        toid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            if (item.agree == "0"){
+            	alert("同意成功，已互为好友");
+            	var x = "#" + needid;
+            	$(x).empty();
+            }
+            if (item.agree == "2"){
+            	alert("服务器异常");
+            }
+        });
+    });
+}
+
+function nrefuse(needid){
+	$.post("/miweb/controller/con_fagree/",
+    {
+        fagree:"0",
+        fromid:needid,
+        toid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $.each(data, function(i,item){
+            if (item.agree == "1"){
+            	alert("拒绝成功");
+            	var x = "#" + needid;
+            	$(x).empty();
+            }
+            if (item.agree == "2"){
+            	alert("服务器异常");
+            }
+        });
+    });
+}
+</script>
+<script>
+$(document).ready(function(){
+    $("#mynews").attr({
+        "class" : "active",
+    });
+
+});
+</script>
+{% endblock %}
+

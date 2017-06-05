@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<script type="text/javascript" src="/js/jquery-1.3.2.min.js" language="javascript"></script>
+<script type="text/javascript">document.oncontextmenu = new Function('return false');</script>
+<META content="MSHTML 6.00.6000.16809" name="GENERATOR">
+<style type="text/css">
+html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, dl, dt, dd, ol, ul, li, fieldset, form, label, legend {  vertical-align: baselinebaseline; font-family: inherit;font-weight: inherit; font-style: inherit; outline: 0; padding: 0; margin: 0; border: 0;}
+:focus { outline: 0; }
+#content {width:1100px; height:733px; margin:0 auto;}
+.bg1a{background:url('/images/3/register3_01.jpg');width:1100px; height:54px;}
+.bg1b{background:url('/images/3/register3_02.jpg');width:1100px; height:73px;}
+.bg1c{background:url('/images/3/register3_03.jpg');width:1100px; height:62px;}
+.bg2a{width:1100px; height:60px;}
+.bg2b{background:url('/images/3/register3_05.jpg');width:1100px; height:263px;}
+.bg2c{background:url('/images/3/register3_06.jpg');width:1100px; height:79px;}
+.bg2d{background:url('/images/3/register3_07.jpg');width:1100px; height:76px;}
+.bg2e{background:url('/images/3/register3_08.jpg');width:1100px; height:66px;}
+.main{float:left;top:50px; font-size:12px; left:590px; width:550px; position:relative; color:#fff;}
+.input1 {background:url('/images/3/input_bg.gif'); height:16px; border:0px;  padding-top:5px;font-size:12px; color:#666666;}
+.input2 {height:16px; border:2px #ff0000 solid;  padding-top:5px;font-size:12px; color:#666666; background:#F8CAAC}
+span {float:left;}
+a{color:#ff6600; padding-right:5px;text-decoration:none;}
+a:link{color:#ff6600; padding-right:5px;text-decoration:none;}
+a:hover{color:#ff0000; padding-right:5px;text-decoration:none;}
+.red{color:#ff0000;}
+.link {color:#F21373;  font-size:14px; text-decoration:none;}
+.link a{color:#F21373; text-decoration:none;}
+.link a:hover{ color:#Ff6600; text-decoration:none;}
+.onShow{color:#ffffff;}
+.onFocus{color:#ffffff;}
+.onError{color:#FF0000;}
+.onSuccess{color:#ffffff;}
+.onLoad{color:#ffffff;}
+.onCorrect{color:#ffffff;}
+</style>
+</head>
+<body style="background-color:black">
+    <div id="content">
+        <div class="bg1a">
+        </div>
+        <div class="bg1b">
+        </div>
+        <div class="bg1c">
+        </div>
+        <div class="bg2a">
+                    <img src="/images/3/register3_04.jpg" width="1100" height="60" border="0" />
+        </div>
+        <div class="bg2b">
+        <div class="main">
+	<table width="100%" border=0 id="formContainer1">
+	<form id="reg" onsubmit="return CheckForm();" action="/register.php" method="post">
+		<tr>
+			<td align=right style="padding-right:5px; color:#ffffff; ">
+				用 户 名：			</td>
+			<td width="33%" align=left style="margin-left:5px; color:#000; ">
+			<input class="input1" id="UserName" name="UserName" type="text" value="" onkeyup="value=value.replace(/[\W]/g,'')"/>			</td>
+		    <td width="220" align=left id="msguname">用戶名3到12位</td>
+		</tr>
+		<tr>
+			<td align=right style="padding-right:5px;color:#ffffff;">
+				密　&nbsp; 码：							</td>
+			<td align=left style="height:32px;color:#ffffff;">
+				<input class="input1" id="Password" name="Password" type="password" value="" />			</td>
+		    <td align=left id="msgpwd">请输入密码</td>
+		</tr>
+		<tr>
+			<td align=right style="padding-right:5px;color:#ffffff;">
+				确认密码：			</td>
+			<td align=left style="height:32px;color:#000; ">
+				<input class="input1" id="Password1" name="Password1" type="password" value="" />			</td>
+		    <td align=left id="msgrepwd">请输入确认密码</td>
+		</tr>
+		<tr>
+			<td align=right style="padding-right:5px;color:#ffffff;">
+				验 证 码：			</td>
+			<td align=left>
+			<input id="yan" name="yan" type="text" size="13" class="input1" />
+			<img src="/vcode.php" align="absmiddle"  style="cursor:hand;width:56px;height:23px;" onclick="this.src =this.src+'?';" border="0" /> </td>
+		    <td align=left id="msgyan"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td  style="padding:5px;">
+
+				<input id="img_submit" type="image" src="/images/3/button_bg.jpg" width="113" height="32" />			</td>
+		    <td style="padding:5px;" class="link"><a href="/" style="color:blue;">&gt;&gt; 已注册用户请点此登陆</a></td>
+		</tr>
+        <input id="ProID" type="hidden" value="1" name="ProID" />
+	</form>
+	</table>
+	</div>
+        </div>
+        <div class="bg2c">
+
+        </div>
+	<div class="bg2d"></div>
+		<div class="bg2e"></div>
+	</div>
+</body>
+<script type="text/javascript" src="/js/reg.js"></script>
+<script type="text/javascript" language="javascript">
+var Myurl=document.URL; 
+var pid=Myurl.split('?')[1] 
+if(pid!=undefined)document.getElementById("ProID").value=pid;
+</script> 
+</html>

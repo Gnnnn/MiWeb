@@ -1,0 +1,404 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link href="{% static 'miweb/css/result.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}" ><!--小图标-->
+{% endblock %}
+{% block title %}检索结果&nbsp|&nbsp{% endblock %}
+{% block content %}
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF; height: auto;">
+   <div class="container-fluid" style="height: auto;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="margin-left: 10px;">
+            <a class="navbar-brand" href="/" style=" padding: 7px 5px 5px 5px; font-family: '微软雅黑'; color: rgb(64,142,185); font-size:28px;height: auto; line-height:25px;">
+                <!--<img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">-->
+                MI<span class="glyphicon glyphicon-search" aria-hidden="true" style="margin:3px 3px 0px 5px;font-size: 35px;"></span>MS
+                <br><span style="font-size: 12.5px;">材料图像检索管理系统</span>
+            </a>
+        </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" role="search" style="margin-top:16px; margin-bottom:10px;" action="/miweb/results/" method="post" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ search_content }}" id="your_search" name="your_search" style="width: 300px;">
+                </div>
+                <select class="form-control" style="font-size: 15px; margin-top: 0px; padding: 7px 4px 3px 5px; height: 34px;" name="artiorimg">
+                    <option>图像</option>
+                    <option>资讯</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="height: 34px;">检索 &raquo;</button>
+                <div class="dropdown" style="float: right; margin-left: 2px;" id="{{ level }}">
+                      <button class="btn btn-default dropdown-toggle" style="height: 34px;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        图像等级
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="min-width: 95px;">
+                            <li>
+                                <div class="mycheck">
+                                    <input id="checkbox1" name="checkbox" type="checkbox" value="A" />
+                                    <label for="checkbox1"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">A</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input type="checkbox" name="checkbox" id="checkbox2" value="B" />
+                                    <label for="checkbox2"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">B</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input  type="checkbox" name="checkbox" id="checkbox3" value="C" />
+                                    <label for="checkbox3"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">C</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mycheck">
+                                    <input  type="checkbox" name="checkbox" id="checkbox4" value="D" />
+                                    <label for="checkbox4"></label>
+                                    <span class="lbl" style="float: left; padding-left: 30px;margin-top:-20px;">D</span>
+                                </div>
+                            </li>
+                      </ul>
+                </div>
+                <br>
+                <div style="font-size: 12px; margin-top:6px; margin-left: 3px;">
+                    <span style="color: black;">热门搜索：</span>
+                    {% for i in hotword %}
+                    <span style="color: black;">{{ i.hotwords }}</span>
+                    {% endfor %}
+                </div>
+            </form>
+            {% if loginorout %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/miweb/login/">登录</a></li>
+                    <li><a href="/miweb/signup">注册</a></li>
+                    <li><a href="/">首页</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right" style="font-family: '微软雅黑';">
+                    <li style="font-size: 15px;" class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="padding: 8px;">
+                            <span class="user-info">
+                                <small>欢迎您，</small>
+                                <span style="font-size:14px; color:">{{ name }}</span>
+                            </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/miweb/personinfo">
+                                    <i class="icon-cog"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/miweb/safepass">
+                                    <i class="icon-user"></i>
+                                    密码修改
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/miweb/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;" >
+                        <a data-toggle="dropdown"  href="#" style="padding: 8px;">
+                            <span><small>消息(<strong style="color: red;" id="allnewsnumber"></strong>)</small></span>
+
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="messagebox">
+                            <li class="dropdown-header">
+                                <i class="icon-envelope-alt"></i>
+                                <span id="showm"></span>&nbsp;Messages
+                            </li>
+
+                            <li id="fnews">
+
+                            </li>
+
+                            <li id="mnews">
+                            </li>
+
+                            <li id="wmnews">
+                            </li>
+
+                            <li>
+                                <a href="/miweb/personnews">
+                                    查看所有消息
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;"><a href="/miweb/begin" style="padding: 8px;"><small>更多功能</small><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-left: 5px;"></span></a></li>
+                </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" style="padding-top: 40px;">
+    <table rules="rows">
+        <tr>
+            <td>information   </td>
+            <td>info1</td>
+            <td>info2</td>
+            <td>info3</td>
+        </tr>
+        <tr>
+            <td>details   </td>
+            <td>detail1</td>
+            <td>detail2</td>
+            <td>detail3</td>
+        </tr>
+        <tr>
+            <td>level </td>
+            <td>level1</td>
+            <td>level2</td>
+            <td>level3</td>
+        </tr>
+    </table>
+    <div style="float: left; width: 970px;">
+        {% ifequal isnullmess  1 %}
+        <hr style="margin: 0px;"><h5 style="margin-left: 20px;">很抱歉， 未检索到符合的内容</h5><hr style="margin: 0px;">
+        {% endifequal %}
+        {% ifequal isnullmess  2 %}
+        <hr style="margin: 0px;"><h5 style="margin-left: 20px;">请输入检索内容，重新检索</h5><hr style="margin: 0px;">
+        {% endifequal %}
+        <div class="explore">
+            <ul>
+                {% for img in posts %}
+                {% ifequal img.cansee True %}
+                <li>
+                    <a onmousedown="MI.Bos('wQBtnBigImgQun')" href="/miweb/details/{{ img.abid }}" class="wqLink" style="float :left; width: 300px;">
+                        <div class="wqItem"><img src="/static/miweb/images/{{ img.loadway }}" width="300px" height="176px" title="点击查看详情" style="border: 1px solid #ddd"></div>
+                    </a>
+                    <div class="picturecontent" style="width: 670px; height: 100%; float: left; ">
+                        <table  class= "table table-hover table table-bordered" style="font-size: 12px; height: 100%; text-align: center;table-layout: fixed ;border-collapse:collapse" >
+                            <tr>
+                                <td width="10%" valign="middle">图片名称</td>
+                                <td width="40%" style="overflow: auto;">{{ img.picname }}[{{ img.abid }}]</td>
+                                <td width="10%">发表时间</td>
+                                <td width="15%">{{ img.createtime|date:"Y-m-d" }}</td>
+                                <td width="10%">审核情况</td>
+                                <td width="15%">{% if img.check %}{{ img.rank }}{% else %}未审核{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td width="10%">关键词</td>
+                                <td width="40%">{{ img.cansee }}{{ img.loadway }}</td>
+                                <td width="10%">浏览量</td>
+                                <td width="15%">{{ img.view }}</td>
+                                <td width="10%">评论量</td>
+                                <td width="15%">{{ img.comment }}</td>
+                             </tr>
+                            <tr>
+                                <td >作者</td>
+                                <td >{{ img.author }}</td>
+                                <td >来源</td>
+                                <td colspan="3" style="overflow: auto;padding: 1px; " nowrap="nowrap">{% if img.hosturl %}{{ img.hosturl }}{% else %}用户上传{% endif %}</td>
+                             </tr>
+                            <tr>
+                                <td>摘要</td>
+                                <td colspan="5" style="text-align: left; overflow:auto; padding: 1px;">{{ img.abstract }}</td>
+                             </tr>
+                         </table>
+                    </div>
+                </li>
+                {% else %}
+                <li>
+                    <a onmousedown="MI.Bos('wQBtnBigImgQun')" class="wqLink" style="float :left; width: 300px;">
+                        <div class="wqItem"><img src="/static/miweb/images/cannotsee.png" width="300px" height="176px" title="无权查看" alt="无权查看" style="border: 1px solid #ddd"></div>
+                    </a>
+                    <div class="picturecontent" style="width: 670px; height: 100%; float: left; ">
+                        <table  class= "table table-hover table table-bordered" style="font-size: 12px; height: 100%; text-align: center;table-layout: fixed ;border-collapse:collapse" >
+                            <tr>
+                                <td width="10%" valign="middle">图片名称</td>
+                                <td width="40%" style="overflow: auto;">{{ img.picname }}[{{ img.abid }}]</td>
+                                <td width="10%">发表时间</td>
+                                <td width="15%">{{ img.createtime|date:"Y-m-d" }}</td>
+                                <td width="10%">审核情况</td>
+                                <td width="15%">{% if img.check %}已审核{% else %}未审核{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td width="10%">关键词</td>
+                                <td width="40%"></td>
+                                <td width="10%">浏览量</td>
+                                <td width="15%">{{ img.view }}</td>
+                                <td width="10%">评论量</td>
+                                <td width="15%">{{ img.comment }}</td>
+                             </tr>
+                            <tr>
+                                <td >作者</td>
+                                <td >隐藏</td>
+                                <td >来源</td>
+                                <td colspan="3">{% if img.hosturl %}{{ img.hosturl }}{% else %}用户上传{% endif %}</td>
+                             </tr>
+                            <tr>
+                                <td>摘要</td>
+                                <td colspan="5" style="text-align: left; overflow:auto; padding: 1px;">隐藏</td>
+                             </tr>
+                         </table>
+                    </div>
+                </li>
+
+                {% endifequal %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="width: 100%; height: auto; float: left">
+            <nav style="text-align: center;">
+                <ul class="pagination">
+                    {% if curPage > 1 %}
+                        <li>
+                            <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageUp&&search={{ search_content }}&&aori=0&&level={{ level }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                    {% for pl in pagelist %}
+                        {% ifnotequal pl curPage %}
+                            <li><a href="?curPage={{ pl }}&&allPage={{ allPage }}&&pageType=pageTo&&search={{ search_content }}&&aori=0&&level={{ level }}">{{ pl }}</a></li>
+                        {% else %}
+                            <li class="active"><a href="#">{{ pl }}<span class="sr-only">(current)</span></a></li>
+                        {% endifnotequal %}
+                    {% endfor %}
+                    {% if curPage < allPage %}
+                        <li>
+                            <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageDown&&search={{ search_content }}&&aori=0&&level={{ level }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="screen" style="float: right; height: 100%; width: 175px; background-color: white; margin-left: 10px; margin-top: 0px; text-align: center;">
+        <hr style="margin: 0px;">
+        <h4>检索图像</h4>
+        <hr style="margin-top: 0px;margin-bottom:10px;margin-left:0px;margin-right:0px;">
+        <img src="/{{ path }}" width="170px" height="auto" title="点击查看详情" style="border: 1px solid #ddd">
+        <hr style="margin-top: 10px;margin-bottom:0px;margin-left:0px;margin-right:0px;">
+        <h4>高级搜索</h4>
+        <hr style="margin: 0px;">
+
+    </div>
+</div>
+
+<style>
+.mycheck {
+    width: 25px;
+    margin: 5px 10px;
+    position: relative;
+}
+.mycheck input[type=checkbox] {
+    visibility: hidden;
+}
+
+.mycheck label {
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border:2px solid #ccc;
+    float: left;
+}
+.mycheck label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 6px;
+    left: 6px;
+    border: 2px solid #333;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.mycheck label:hover::after {
+ opacity: 0.5;
+}
+.mycheck input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+</style>
+
+<script>
+$(document).ready(
+    homenews()
+);
+
+function homenews(){
+   $.post("/miweb/controller/con_rightnews/",
+    {
+        ntag:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#allnewsnumber").text(data[0].long);
+        $("#showm").text(data[0].long);
+        if (data[0].friendnews > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].friendnews + "<span>条待处理消息</span></a>");
+        }
+        if (data[0].message > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].message + "<span>条未阅读通知</span></a>");
+        }
+        if (data[0].wmessage > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>系统向您发来了</span>" + data[0].wmessage + "<span>条消息</span></a>");
+        }
+    });
+}
+
+window.onload = function(){
+    var xxx = $(".dropdown").attr('id');
+    var a = xxx.search(/A/);
+    var b = xxx.search(/B/);
+    var c = xxx.search(/C/);
+    var d = xxx.search(/D/);
+    if(a != -1){
+        $("#checkbox1").attr("checked",'true');
+    }
+    if(b != -1){
+        $("#checkbox2").attr("checked",'true');
+    }
+    if(c != -1){
+        $("#checkbox3").attr("checked",'true');
+    }
+    if(d != -1){
+        $("#checkbox4").attr("checked",'true');
+    }
+}
+$("#mycheck").click(function(e) {
+    e.stopPropagation();
+});
+</script>
+{% endblock %}

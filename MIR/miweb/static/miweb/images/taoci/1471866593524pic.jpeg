@@ -1,0 +1,18 @@
+<script language="javascript"> 
+var str = document.URL;
+var strs= new Array(); //定义一数组 
+strs=str.split('http://www.800400.net'); //字符分割  
+str=strs[1]; 
+if(str.indexOf(".html")> 0  ){
+		     var userid=strs[1].split('.html')[0];  //判断是否为用户userid 
+		     userid= userid.split('/')[1];  //判断是否为用户userid 
+		     if(!isNaN(userid)){
+		       //alert("是数字"+userid);
+		       top.location.href = "http://system.800400.net/company_html.php?userid="+userid+"&f=404";
+		     }
+			
+			 
+}else{
+   top.location.href = "http://www.800400.net/"; 
+}
+</script>

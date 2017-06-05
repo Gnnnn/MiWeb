@@ -1,0 +1,73 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            好友中心
+        </li>
+        <li>
+            邀请码
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+
+<div class="section section-settings" style="width: 100%; float: left; margin-top: 20px;">
+    <form id="profile" class="profile-basic-form" method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>邀请码</label>（1个邀请码可邀请5人，之后可重新生成）
+            {% if cangenenum %}
+                <input type="text" class="form-control" name="your_name" value=""  readonly="True" placeholder="邀请码">
+            {% else %}
+                <input type="text" class="form-control" name="your_name" value="{{ outputcode }}"  readonly="True" placeholder="邀请码">
+            {% endif %}
+        </div>
+        <div class="actions">
+            {% if cangenenum %}
+                <button type="submit" name="update" class="btn btn-primary push-right">生成邀请码</button>
+            {% else %}
+                <button type="submit" name="update" class="btn btn-primary push-right" disabled="disabled">该邀请码剩余可注册人数{{ outputinvitenum }}人</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#friendcenter").attr({
+        "class" : "active open",
+    });
+
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+

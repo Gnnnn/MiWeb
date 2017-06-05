@@ -1,0 +1,139 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            管理中心
+        </li>
+        <li>
+            等待审阅
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+
+<div class="container" style="padding-top: 20px;">
+
+	<div style="width: 970px; padding:10px; float: left; background-color:#F0F0F0;">
+
+
+		<div id="example_wrapper" style="float: left; width: 100%;" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <table id="example" class="table table-striped table-bordered dataTable no-footer" cellspacing="0" width="100%" role="grid" >
+                <thead>
+                    <tr role="row">
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 130px;">编号</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 130px;">名称</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 110px;"><a href="" id="pagedate">日期</a></th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 70px;">审阅情况</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">审阅人</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 60px; "></th></tr>
+                </thead>
+
+                <tbody id="review_id">
+                    <tr>
+
+                    </tr>
+                </tbody>
+		    </table>
+
+        </div>
+	</div>
+
+
+</div>
+
+<script>
+var cdate="0";
+var cpage=0;
+$(document).ready(
+waitrecord()
+);
+
+function waitrecord(){
+    $.post("/miweb/controller/reviewdata/",
+    {
+        retag:"0",
+        repage:"1",
+        restatus:cdate,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#review_id").empty();
+        $.each(data, function(i,item){
+            $("#review_id").append("<tr id=\"" + item.reid + "\"><td>" + item.reid + "</td><td>" + item.rename + "</td><td>" + item.recreatedate + "</td><td>" + item.recheck + "</td><td>" + item.recheckauthor + "</td><td><a href=\"/miweb/reviewdetails/" + item.reid + "\">审阅</a></td></tr>"
+            );
+        });
+    });
+    $("#pagedate").attr({
+        "href": "javascript: pdfunction()"
+    });
+    cpage=0;
+    $("#managecenter").attr({
+        "class" : "active open",
+    });
+    $("#reviewcenter").attr({
+        "class" : "active open",
+    });
+}
+
+function reviewrecord(){
+    $.post("/miweb/controller/reviewdata/",
+    {
+        retag:"1",
+        repage:"1",
+        restatus:cdate,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#pagename").text("审阅记录");
+        $("#review_id").empty();
+        $.each(data, function(i,item){
+            $("#review_id").append("<tr id=\"" + item.reid + "\"><td>" + item.reid + "</td><td>" + item.rename + "</td><td>" + item.recreatedate + "</td><td>" + item.recheck + "</td><td>" + item.recheckauthor + "</td><td><a href=\"/miweb/reviewdetails/" + item.reid + "\">审阅</a></td></tr>"
+            );
+        });
+        $("#pagedate").attr({
+        "href": "javascript: pdfunction()"
+        });
+    });
+    cpage=1;
+}
+function pdfunction(choo){
+    if (cdate == "0"){
+        cdate="1";
+    }
+    else{
+        cdate="0";
+    }
+    if (cpage == 0){
+        waitrecord();
+    }
+    else{
+        reviewrecord();
+    }
+}
+</script>
+{% endblock %}
+

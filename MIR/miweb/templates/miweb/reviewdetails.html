@@ -1,0 +1,101 @@
+{% extends 'miweb/base_person.html' %}
+{% load staticfiles %}
+{% block content_person %}
+
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            管理中心
+        </li>
+        <li>
+            <a href="/miweb/review/">等待审阅</a>
+        </li>
+        <li>
+            审阅详情
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+<div class="container" style="padding-top: 20px;">
+    <div style="width: 970px; padding:10px; float: left; background-color:#F0F0F0;">
+        <div style=" float: left; width:480px;">
+            <img src="{%static 'miweb/images/image.jpg'%}" width="100%" height="300px" >
+        </div>
+
+        <div class="picturecontent" style="width: 400px; height: 300px; float: left; word-wrap:break-word; margin-left: 20px;">
+            <p style="margin-top:5px;">【图片名称】：{{ imginfo.picname }}[{{ imginfo.abid }}] </p>
+            <p>【机构】：{{ imginfo.authorjob }}<span style="float: right;">【作者】：{{ imginfo.author }}</span></p>
+            <p>【来源】：xxxxxxxxx <span style="float: right;">【发表时间】：{{ imginfo.moditime }}</span> </p>
+            <p>【关键字】：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <p style="word-wrap: break-word;">【详情】：{{ imginfo.content }}</p>
+        </div>
+
+        <div id="review" style="float: left; padding-top: -20px;">
+            <div id="reviewbox">
+                <form action="#reviewbox" method="post">
+                    {% csrf_token %}
+                    <h3>审阅意见</h3>
+                    <textarea  id="review_idea" name="review_idea" style="border-radius:4px; overflow: auto; width: 700px; height: 170px; resize: none;"  placeholder="输入您的审阅意见">{{ imginfo.checkwords }}</textarea>
+                    <br />
+                    {% ifequal imginfo.check 1 %}
+                    <input class="btn btn-default" type="submit" value="发布" disabled="disabled"/>
+                    {% else %}
+                    <label>图片等级&nbsp&nbsp</label>
+                    <select name="level">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                    <input class="btn btn-default" type="submit" value="发布" style="margin-left:3px; border:0; color: black;" />
+                    {% endifequal %}
+                    {% ifequal isnoned 0 %}
+                    {% else %}
+                    <a class="btn btn-default" href="/miweb/reviewdetails/{{ dabid }}" role="button" style="border:0; color: black;">下一张</a>
+                    {% endifequal %}
+                    {% ifequal isnoneu 0 %}
+                    {% else %}
+                    <a class="btn btn-default" href="/miweb/reviewdetails/{{ uabid }}" role="button" style="border:0;">上一张</a>
+                    {% endifequal %}
+                    {{ mess }}
+                </form>
+            </div>
+
+         </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#managecenter").attr({
+        "class" : "active open",
+    });
+    $("#reviewcenter").attr({
+        "class" : "active open",
+    });
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px; height: 100%;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            个人中心
+        </li>
+        <li>
+            个人资料
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+<div class="section section-settings">
+    <h4>基本资料{{ mess }}</h4>
+    <form id="profile" class="profile-basic-form" method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+           <div class="form-group">
+            <label for="your_email">邮箱（账号）</label>
+            <input type="text" class="form-control" name="your_email" id="your_email" value="{{ email }}" readonly="True">
+           </div>
+        </div>
+        <div class="form-group">
+            <label for="your_name">昵称</label>
+            <input type="text" class="form-control" name="your_name" id="your_name" value="{{ name }}">
+        </div>
+         <div class="form-group">
+            <label for="your_place">所在机构</label>
+            <input type="text" class="form-control" name="your_place" id="your_place" value="{{ job }}">
+        </div>
+        <div class="form-group">
+            <label>性别</label>
+            <div>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-info {{ male }}">
+                        <input type="radio" name="your_sex" id="male" value="1" autocomplete="off">男♂
+                    </label>
+                    <label class="btn btn-info {{ female }}">
+                        <input type="radio" name="your_sex" id="female" value="0" autocomplete="off">女♀
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="your_phone">手机号码</label>
+            <input type="text" class="form-control" name="your_phone" id="your_phone" value="{{ phone }}">
+        </div>
+        <div class="form-group">
+            <label for="your_info">个人简介</label>
+            <textarea id="your_info" class="form-control" name="your_info" maxlength="400">{{ info }}</textarea>
+        </div>
+        <div class="actions">
+            <button type="submit" name="update" class="btn btn-primary push-right">更新资料</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+$(document).ready(function(){
+    $("#personcenter").attr({
+        "class" : "active open",
+    });
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+{% load staticfiles %}
+
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+           上传中心
+        </li>
+        <li>
+            上传记录
+        </li>
+        <li>
+            更改
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+<div class="container" style="padding-top: 20px;">
+    <div style=" width: 970px; padding:10px; float: left;">
+        <form action="#mess" method="post">
+            {% csrf_token %}
+            <fieldset>
+
+                <div class="form-group">
+                    <img name="showimg" id="showimg" src="/static/miweb/images/{{ img.loadway }}" style="width: 500px; height: 300px; float: left;" alt="" />
+                    <div class="form-group" style="width: 400px; float: left; margin-left: 30px; margin-top: 2px;">
+                    <label>图片名称</label>
+                    <input type="text" class="form-control"  value="{{ imgup.picname }}" id="pic_name" name="pic_name">
+                    </div>
+                    <div class="form-group" style="width: 400px; float: left; margin-left: 30px; margin-top: 2px;">
+                    <label>图片标号</label>
+                    <input type="text" class="form-control"  value="{{ imgup.abid }}" id="pic_abid" name="pic_abid" readonly="True">
+                    </div>
+                    <div class="form-group" style="width: 400px; float: left; margin-left: 30px; margin-top: 2px;">
+                    <label>作者</label>
+                    <input type="text" class="form-control"  value="{{ imgup.author }}" id="pic_author" name="pic_author" readonly="True">
+                    </div>
+                    <div class="form-group" style="width: 400px; float: left; margin-left: 30px; margin-top: 2px;">
+                    <label>机构</label>
+                    <input type="text" class="form-control"  value="{{ imgup.authorjob }}" id="pic_job" name="pic_job">
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    <label style="width: 100%; margin-top: 10px;">摘要</label>
+                    <input type="text" class="form-control"  value="{{ imgup.abstract }}" id="pic_abstract" name="pic_abstract">
+                </div>
+                <div class="form-group">
+                    <label>图片详情</label>
+                    <textarea class="form-control" style="height: 200px; resize: none;" id="pic_content" name="pic_content">{{ imgup.content }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>选择&nbsp&nbsp</label>
+                    <select name="plevel">
+                        <option value="A" id="opA" selected="{% ifequal imgup.sele 'A' %}selected{% else %}{% endifequal %}">公开给所有人</option>
+                        <option value="B" id="opB" selected="{% ifequal imgup.sele 'B' %}selected{% else %}{% endifequal %}">公开给所有好友</option>
+                        <option value="E" id="opE" selected="{% ifequal imgup.sele 'E' %}selected{% else %}{% endifequal %}">不公开</option>
+                    </select>
+                </div>
+                <h5 id="mess">{{ mess }}</h5>
+                <button type="submit" class="btn btn-default">更改</button>
+                <a href="/miweb/upload/record/?delete=1&&abid={{ imgup.abid }}" class="btn btn-default">删除</a>
+                <a href="/miweb/upload/record/" class="btn btn-default">返回</a>
+            </fieldset>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+$(document).ready(function(){
+    $("#uploadcenter").attr({
+        "class" : "active",
+    });
+
+});
+</script>
+{% endblock %}

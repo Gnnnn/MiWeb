@@ -1,0 +1,8 @@
+Error :未能找到文件“G:\www\sogouthumb\ea8\e4d\69f\6101d6d0d8f439de-b48742efdc8b7025-3207beb6f6fe26964758301ea8e4d69f.jpg”。V:sgtimg/ea8/e4d/69f/6101d6d0d8f439de-b48742efdc8b7025-3207beb6f6fe26964758301ea8e4d69f.jpg
+id:6101d6d0d8f439de%2fb48742efdc8b7025%2f3207beb6f6fe26964758301ea8e4d69f
+qstringsn=sogou&404%3bhttp%3a%2f%2ft.9simg.com%3a80%2fsgtimg%2fea8%2fe4d%2f69f%2f6101d6d0d8f439de-b48742efdc8b7025-3207beb6f6fe26964758301ea8e4d69f.jpg
+Ex:System.Threading.ThreadAbortException: Thread was being aborted.
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 Ysoho.ImageServerBingEtc.Himages.ProcessRequest(HttpContext context)

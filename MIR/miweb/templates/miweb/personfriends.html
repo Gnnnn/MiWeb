@@ -1,0 +1,175 @@
+{% extends 'miweb/base_person.html' %}
+{% load staticfiles %}
+{% block content_person %}
+<style type="text/css">
+.menu_list{width:268px;padding-left: 100px;}
+.menu_head{
+	height: 47px;
+	line-height: 47px;
+	padding-left: 38px;
+	font-size: 14px;
+	color: #525252;
+	cursor: pointer;
+	border-left: 1px solid #e1e1e1;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #F1F1F1;
+	position: relative;
+	margin: 0px;
+	font-weight: bold;
+	background: #f1f1f1 url(images/pro_left.png) center right no-repeat;
+}
+.menu_list .current{background:#f1f1f1 url(images/pro_down.png) center right no-repeat;}
+.menu_body{
+	line-height: 38px;
+	border-left: 1px solid #e1e1e1;
+	backguound: #fff;
+	border-right: 1px solid #e1e1e1;
+}
+.menu_body a{display:block;height:38px;line-height:38px;padding-left:38px;color:#777777;background:#fff;text-decoration:none;border-bottom:1px solid #e1e1e1;}
+.menu_body a:hover{text-decoration:none;}
+</style>
+
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin">后台管理</a>
+        </li>
+
+        <li>
+            好友中心
+        </li>
+        <li>
+            好友管理
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+
+
+<div class="section section-settings" style="margin-top: 20px;">
+    <label style="width: 100%; float: left;">好友列表</label>
+    <div style="width: 250px; height: 250px; float: left;;overflow: auto;">
+        <ul style="list-style: none; font-size: 13px;" id="classify">
+
+        </ul>
+    </div>
+    <div style="width: 250px; height: 250px;; float: left; margin-left: 50px;overflow: auto; display: none;" id="friendsdiv" >
+        <ul style="list-style: none; font-size: 13px" id="friends">
+
+        </ul>
+    </div>
+</div>
+<hr style="width: 100%; float: left;">
+<div class="section section-settings" style="width: 100%; float: left;">
+    <label>添加好友</label>
+
+    <div class="form-group">
+        <input type="email" name="friendemail" id="friendemail" value="" placeholder="好友邮箱（账号）">
+        <button id="tryadd">申请添加</button>
+    </div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#tryadd").click(function(){
+        var addemail = $("#friendemail").val()
+        $.post("/miweb/controller/frienddata/",
+        {
+            tag:"add",
+            content:addemail,
+            fromid:"{{ userid }}",
+            fromname:"{{ name }}",
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        function(data,status){
+            alert("" + data.message);
+        });
+    });
+
+});
+</script>
+
+<script>
+
+$(document).ready(function(){
+    $.post("/miweb/controller/con_frienddata/",
+        {
+            ftag:"0",
+            fstatus:"0",
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        function(data,status){
+            $.each(data, function(i,item){
+                $("#classify").append("<li><a href=\"javascript:cfriends(" + item.gid + ")\">" + item.gname + "</a></li>"
+                );
+            });
+        }
+    );
+
+});
+function cfriends(cla){
+    $.post("/miweb/controller/con_frienddata/",
+    {
+        ftag:"0",
+        fstatus:"1",
+        fgid:cla,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        if (data[0].fname == "0"){
+            $("#friendsdiv").css("display","block");
+            $("#friends").empty();
+        }
+        else{
+            if (data[0].fname == "2"){
+                alert("服务器异常");
+            }
+            else{
+                $("#friendsdiv").css("display","block");
+                $("#friends").empty();
+                $.each(data, function(i,item){
+                    if (item.fname == "1"){
+                    }
+                    else{
+                        $("#friends").append("<li><a>" + item.fnicheng + item.fname + "</a></li>"
+                        );
+                    }
+                });
+            }
+        }
+    });
+}
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#friendcenter").attr({
+        "class" : "active open",
+    });
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>404 - 找不到文件或目录。</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maxinum-scale=1,user-scalable=no" />
+  <style type="text/css">
+    body { background:white; margin:100px 20px; }
+    .a { margin:0 auto; max-width:800px; *width:800px; line-height:2; font-family:"microsoft yahei",verdana,arial; color:#888; }
+    .b { height:8px; border-top:1px dashed #ccc; margin:24px 0; }
+    .x { font-size:32px; }
+    .y { font-size:16px; }
+    .z { font-size:16px; margin-top:1em; }
+    .z a { text-decoration:none; color:#f00; }
+    .z a:hover { color:#f60; }
+    .z i { font-family:'宋体'; font-style:normal; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <div class="a x">服务器错误</div>
+  <div class="b"></div>
+  <div class="a y">
+    404 - 找不到文件或目录。<br />
+    您要查找的资源可能已被删除，已更改名称或者暂时不可用。
+  </div>
+  <div class="a z"> 
+    <a href="/"><i>&lt;</i> 返回 <i>&gt;</i></a>
+  </div>
+</body>
+</html>

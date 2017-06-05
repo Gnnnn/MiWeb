@@ -1,0 +1,1356 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>系统推荐页面</title>
+<link href="http://www.zhaoshang100.com/html1/css/yui.css" rel="stylesheet" type="text/css" />
+<link href="http://www.zhaoshang100.com/html1/css/yu1.css" rel="stylesheet" type="text/css" />
+<script language=Javascript src="http://www.zhaoshang100.com/pic300.js"></script>
+<link href="../style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<link href="/css_n/style/all.css" rel="stylesheet" type="text/css" />
+
+<link href="/css_n/style/information.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/css_n/script/jquery-1.4.2.min.js"></script>
+<script src="/css_n/script/AutoComplete/jquery.autocomplete.js" type="text/javascript"></script>
+<script type="text/javascript" src="/css_n/script/qhwall.js"></script>
+<script language=Javascript src="/pic00.js"></script>
+
+
+
+
+
+
+<div class="topbar" id="txtst">
+<div class="toptab">
+<p class="greet">您好，欢迎来到100招商网！ <span  id="S_User" class="blue"><a target="_blank" rel="nofollow" href="http://www.zhaoshang100.com/user_login.jsp">请登录</a>
+</span>&nbsp;&nbsp; <span id="loginout" class="blue" >[<a href="#" onclick='toQzoneLogin()'>QQ账号登录</a>]</span>&nbsp;<span  class="blue">
+[<a target="_blank" rel="nofollow" href="http://www.zhaoshang100.com/UserReg.jsp">免费注册</a>]</span></p>
+<div class="site-nav nounder">
+<ul class="quick-menu">
+<li class="myqihui menu-item">
+<div class="menu">
+<a class="menu-hd" href="http://www.zhaoshang100.com/user_login.jsp" target="_top" rel="nofollow">
+工作平台<b></b></a>
+<div class="menu-bd">
+<div class="menu-bd-panel">
+<dl>
+<dd>
+<a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">我的招商信息</a></dd>
+<dd>
+<a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">我的采购信息</a></dd>
+<dd>
+<a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">我的企业信息</a></dd>
+<dd>
+<a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">我的推广信息</a></dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li class="services menu-item">
+<div class="menu">
+<a class="menu-hd" href="#" target="_top" rel="nofollow">
+招商服务<b></b></a>
+<div class="menu-bd">
+<div class="menu-bd-panel">
+<dl>
+<dd><a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">管理商铺</a></dd>
+<dd><a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">管理招商</a></dd>
+<dd><a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">发布供应</a></dd>
+<dd><a href="http://www.zhaoshang100.com/user_login.jsp" target="_blank" rel="nofollow">发布采购</a></dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li class="swhome"><a href="http://www.zhaoshang100.com/help.html" target="_blank" rel="nofollow">
+帮助中心</a></li>
+<li class="webmenu menu-item">
+<div class="menu">
+<a class="menu-hd" href="#" target="_top" rel="nofollow">
+网站导航<b></b></a>
+<div class="menu-bd">
+<div class="menu-bd-panel">
+<div>
+<a href="http://www.zhaoshang100.com/" rel="nofollow">首页</a>
+<a href="http://www.zhaoshang100.com/zs_list/" rel="nofollow">招商</a>
+<a href="http://www.zhaoshang100.com/company/" rel="nofollow">黄页</a>
+<a href="http://www.zhaoshang100.com/gy_list0/" rel="nofollow">供应</a>
+<a href="http://www.zhaoshang100.com/qg_list/" rel="nofollow">采购</a>
+<a href="http://www.zhaoshang100.com/yzh/"rel="nofollow">展会</a>
+<a href="http://www.zhaoshang100.com/info/" rel="nofollow">资讯</a>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li class="swhome"><b><a href="http://www.zhaoshang100.com/fp/" target="_blank" rel="nofollow">
+<font color="#FF0000">防骗须知</font></a></b></li>
+<li><a href="http://www.zhaoshang100.com/about-5.html" rel="nofollow">联系我们</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="wid110">
+<div class="logotab">
+<div class="logo100">
+<p>
+<a href="http://www.zhaoshang100.com/">100招商网</a>
+</p>
+</div>
+<div class="logofont"> 100招商网,专业化企业招商推广平台</div>
+<div class="searchtab">
+<div class="stit" id="search_type">
+<ul>
+<li >招商</li>
+<li  class="active" >供应</li>
+<li >产品</li>
+<li >企业</li>
+</ul>
+
+</div>
+<div class="searstyle">
+<span class="searmiddle">
+<input type="text" class="input1" value="" id="txt_search_keys" />
+<input id="txt_search_type" type="hidden" value="1" name="search_type" />
+</span><span class="searright" id="search_btn">
+<button type="submit">
+</button>
+</span><span class="searfont gray"><a href="#" rel="nofollow">高级搜索</a><br />
+<a href="http://www.zhaoshang100.com/help.html" rel="nofollow">帮助中心</a> </span>
+</div>
+<ul class="sfont">
+<li>热门推荐：</li>
+  
+<li  class="orange"><a  href="http://bchongti.zhaoshang100.com/" title="红提苗" target="_blank">
+红提苗</a></li> 
+  
+<li  ><a  href="http://www.zhaoshang100.com/s-2035/" title="钢筋价格" target="_blank">
+钢筋价格</a></li> 
+  
+<li  ><a  href="http://www.zhaoshang100.com/s-425/" title="软饮料" target="_blank">
+软饮料</a></li> 
+  
+<li  ><a  href="http://www.zhaoshang100.com/s-208/" title="电子玩具" target="_blank">
+电子玩具</a></li> 
+  
+<li  ><a  href="http://www.zhaoshang100.com/s-180/" title="灯具批发" target="_blank">
+灯具批发</a></li> 
+  
+<li  ><a  href="http://wfqz13223.zhaoshang100.com/" title="挖泥船" target="_blank">
+挖泥船</a></li> 
+
+</ul>
+</div>
+</div>
+<div class="clear">
+</div>
+
+
+<div class="navbar">
+<a name="top"></a>
+<div class="navtab">
+<ul class="navleft">  
+<li ><a  href="http://www.zhaoshang100.com/">首页</a></li>
+<li ><a href="http://www.zhaoshang100.com/zs_list/" target="_top">招商</a></li>
+<li  class="active" ><a href="http://www.zhaoshang100.com/gy_list0/" target="_top">供应</a></li>
+<li ><a href="http://www.zhaoshang100.com/qg_list/" target="_top">采购</a></li>
+<li ><a href="http://www.zhaoshang100.com/chanpin/" target="_top">产品</a></li>
+<li ><a href="http://www.zhaoshang100.com/dl_list/" target="_top">代理</a></li>
+<li ><a href="http://www.zhaoshang100.com/hz_list/" target="_top">合作</a></li>
+<li ><a href="http://www.zhaoshang100.com/zr_list/" target="_top">转让</a></li>
+<li ><a href="http://www.zhaoshang100.com/company/" target="_top">企业</a></li>
+<li ><a href="http://www.zhaoshang100.com/yzh/" target="_top">展会</a></li>
+<li ><a href="http://www.zhaoshang100.com/info/" target="_top">资讯</a></li>
+</ul>
+<ul class="navright">
+<li class="navline"></li>
+<li><a href="http://www.zhaoshang100.com/rz/" target="_blank" rel="nofollow">VIP</a><s class="navhot"></s></li>
+<li><a href="http://www.zhaoshang100.com/rz/" target="_blank">推广</a></li>
+<li><a href="http://www.zhaoshang100.com/about-5.html" target="_blank">联系我们</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="content">
+<div class="plist">
+<div class="here bline">
+您的位置：<a href="/" title="100招商网">100招商网</a> &gt; 供应信息</div>
+<table width=960 height=160 style= "border:1px solid #D9D9D9;border-right-color:#D9D9D9; border-top-color:#D9D9D9;" align=center><tr>
+<td align=center width=470 height="60">
+<script type="text/javascript">
+/*468*60_zhaoshang_960*/
+var cpro_id = "u1300405";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</td><td align="right" height="60">
+<script language="JavaScript" src="http://www.zhaoshang100.com/user/js/480.js" mce_src="http://www.zhaoshang100.com/user/js/480.js" type="text/javascript"></script>
+</td></tr><tr><td align=center colspan="2">
+<script type="text/javascript">
+/*100招商_960_自定义标签云，创建于2014-6-6*/
+var cpro_id = "u1579630";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</td></tr></table>
+<table height=8><tr><td></td></tr></table>
+<div class="cfix">
+<div class="pleft">
+<div class="left1">
+<div class="tit">分类导航</div>
+<div class="leftCont">
+<dl>
+<dt>按大类排列</dt>
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-25/">农产品
+</a> (9262545)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-4/">原材料
+</a> (1730883)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-5/">医药保健
+</a> (98553)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-6/">商务服务相关
+</a> (28766410)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-7/">电脑网络
+</a> (158423)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-9/">安全、防护
+</a> (509307)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-10/">办公、文教
+</a> (491632)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-11/">包装
+</a> (621318)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-13/">电子、电工
+</a> (2479099)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-14/">纺织、皮革
+</a> (132410)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-15/">服装、鞋帽
+</a> (216020)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-16/">化工
+</a> (752873)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-17/">环保
+</a> (502640)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-18/">机械及工业制品
+</a> (7471025)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-19/">家居用品
+</a> (302968)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-20/">家用电器
+</a> (184490)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-21/">建筑、建材
+</a> (15954641)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-22/">交通运输
+</a> (4994084)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-23/">礼品工艺品
+</a> (214696)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-24/">能源
+</a> (351006)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-26/">汽摩及配件
+</a> (305832)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-28/">食品、饮料
+</a> (134753)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-29/">通讯产品
+</a> (90779)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-30/">玩具
+</a> (73162)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-31/">冶金矿产
+</a> (1454811)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-33/">印刷、出版
+</a> (254675)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-34/">运动、休闲
+</a> (268188)</dd>
+
+
+
+
+
+<dd>
+<em style="color: #fff;">? </em>
+
+<a href="../b-35/">纸业
+</a> (102492)</dd>
+
+
+</dl>
+</div>
+</div>
+<div style=" margin-bottom:10px">
+</div>
+
+<div class="grayBor w188">
+<div class="tit">
+<h2>地区分类</h2>
+</div>
+<div class="grayCont">
+<ul class="ul_pclass">
+
+
+
+<li>
+  
+  <a href="/b-4-/">
+  北京</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-5-/">
+  上海</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-6-/">
+  天津</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-7-/">
+  重庆</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-8-/">
+  河北</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-9-/">
+  山西</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-10-/">
+  内蒙古</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-11-/">
+  辽宁</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-12-/">
+  吉林</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-13-/">
+  黑龙江</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-14-/">
+  江苏</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-15-/">
+  浙江</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-16-/">
+  安徽</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-17-/">
+  福建</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-18-/">
+  江西</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-19-/">
+  山东</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-20-/">
+  河南</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-21-/">
+  湖北</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-22-/">
+  湖南</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-23-/">
+  广东</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-24-/">
+  广西</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-25-/">
+  海南</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-26-/">
+  四川</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-27-/">
+  贵州</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-28-/">
+  云南</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-29-/">
+  西藏</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-30-/">
+  陕西</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-31-/">
+  甘肃</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-32-/">
+  青海</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-33-/">
+  宁夏</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-34-/">
+  新疆</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-35-/">
+  香港</a></li>
+
+
+
+
+
+<li>
+  
+  <a href="/b-36-/">
+  澳门</a></li>
+
+
+
+</ul>
+<div class="clear">
+</div>
+</div>
+</div>
+<div class="grayBor w188">
+<div class="tit">
+<h2>活跃分类</h2>
+</div>
+<div class="grayCont">
+<ul class="ul_pclass">
+
+<li>
+<a href="/s-14-1052/" target=_blank>江苏维修</a> 
+</li>
+
+<li>
+<a href="/s-19-2073/" target=_blank>山东建筑工程</a> 
+</li>
+
+<li>
+<a href="/s-19-267/" target=_blank>山东管材</a> 
+</li>
+
+<li>
+<a href="/s-20-1088/" target=_blank>河南泵</a> 
+</li>
+
+<li>
+<a href="/s-14-254/" target=_blank>江苏钢结构</a> 
+</li>
+
+<li>
+<a href="/s-14-476/" target=_blank>江苏塑料原料</a> 
+</li>
+
+<li>
+<a href="/s-19-1022/" target=_blank>山东钢管</a> 
+</li>
+
+<li>
+<a href="/s-19-518/" target=_blank>山东物流</a> 
+</li>
+
+<li>
+<a href="/s-19-1022/" target=_blank>山东钢管</a> 
+</li>
+
+<li>
+<a href="/s-4-5137/" target=_blank>北京行业报告</a> 
+</li>
+
+<li>
+<a href="/s-23-96/" target=_blank>广东物流运输</a> 
+</li>
+
+<li>
+<a href="/s-4-1362/" target=_blank>北京货运</a> 
+</li>
+
+<li>
+<a href="/s-19-2073/" target=_blank>山东建筑工程</a> 
+</li>
+
+<li>
+<a href="/s-19-1022/" target=_blank>山东钢管</a> 
+</li>
+
+<li>
+<a href="/s-19-440/" target=_blank>山东牲畜</a> 
+</li>
+
+<li>
+<a href="/s-14-476/" target=_blank>江苏塑料原料</a> 
+</li>
+
+<li>
+<a href="/s-19-267/" target=_blank>山东管材</a> 
+</li>
+
+<li>
+<a href="/s-19-1314/" target=_blank>山东印刷</a> 
+</li>
+
+<li>
+<a href="/s-4-5137/" target=_blank>北京行业报告</a> 
+</li>
+
+<li>
+<a href="/s-4-5137/" target=_blank>北京行业报告</a> 
+</li>
+
+<li>
+<a href="/s-23-1362/" target=_blank>广东货运</a> 
+</li>
+
+<li>
+<a href="/s-19-1022/" target=_blank>山东钢管</a> 
+</li>
+
+<li>
+<a href="/s-20-1088/" target=_blank>河南泵</a> 
+</li>
+
+<li>
+<a href="/s-19-1022/" target=_blank>山东钢管</a> 
+</li>
+
+<li>
+<a href="/s-14-476/" target=_blank>江苏塑料原料</a> 
+</li>
+
+<li>
+<a href="/s-23-96/" target=_blank>广东物流运输</a> 
+</li>
+
+<li>
+<a href="/s-4-1362/" target=_blank>北京货运</a> 
+</li>
+
+<li>
+<a href="/s-19-267/" target=_blank>山东管材</a> 
+</li>
+
+<li>
+<a href="/s-19-2073/" target=_blank>山东建筑工程</a> 
+</li>
+
+<li>
+<a href="/s-19-183/" target=_blank>山东地板、地毯</a> 
+</li>
+</ul>
+<div class="clear">
+</div>
+</div>
+</div>
+<div id="google_ad_3">
+</div>
+</div>
+<div class="pright">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #E1E1E1;">
+<tr>
+<td>
+<table height=30 width=100%><tr><td bgcolor="#FFFCE3">&nbsp;<font color="#808080">尊敬的访客您好，您访问的页面已经移动或调整，请通过搜索器查找您的信息！</font></td></tr></table></td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="offer" id="ad_sogou2" >
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="22" class="td1">　</td>
+<td height=200>
+<table height=220><tr><td>
+<script type="text/javascript">
+var cpro_id="u765363";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"720",rsi1:"220",pat:"1",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#333399",titSU:"0",tft:"0",tlt:"1",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</td></tr></table>
+</td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="offer">
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582197/" target="_blank" name="pos-1"> 
+沙洋县水泥池乙烯基树脂玻璃钢防腐施工公司欢迎您光临</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+
+沙洋县水泥池乙烯基树脂玻璃钢防腐施工公司欢迎您光临，24小时——服务热线（13770047406），王经理，专业污水池防腐公司,污水池防腐,防腐施工是以合成树脂为粘结剂，玻璃纤维制品（玻璃布、玻璃毡）作增强材料而制成的复合材料。根据不同的防腐蚀要求，常用的树脂有：环氧树脂，聚酯树脂等。产品特点：.</p>
+<p class="line3"><span>2016-08-20 13:27:04 - 
+ 
+<a href="/s-14-1052/" target="_blank">江苏维修</a> - 
+<a href="/c-154-1052/" target="_blank">盐城维修</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582197/" target="_blank" name="pos-1"> 
+
+<img src="http://pic.zhaoshang100.com/00user\uploadpic\cp_006\2016-5-31\110866378ycgkwg.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582196/" target="_blank" name="pos-1"> 
+清新高强丝状RCP渗排水管畅销（15169835888）欢迎.</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+清新高强丝状RCP渗排水管畅销（15169835888）欢迎订购清新高强丝状RCP渗排水管畅销（15169835888）欢迎订购清新高强丝状RCP渗排水管畅销（15169835888）欢迎订购清新高强丝状RCP渗排水管畅销（15169835888）欢迎订购清新高强丝状RCP渗排水管畅销（151698.</p>
+<p class="line3"><span>2016-08-20 13:27:03 - 
+ 
+<a href="/s-19-2073/" target="_blank">山东建筑工程</a> - 
+<a href="/c-42-2073/" target="_blank">泰安建筑工程</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582196/" target="_blank" name="pos-1"> 
+
+<img src="http://pic.zhaoshang100.com/00user/uploadpic/cp_006/2016-8-13/085224946ysgc2016.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582195/" target="_blank" name="pos-1"> 
+周宁县周宁县聊城内衬塑圆管</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+卓泰钢管有限公司(聊城锌钢管厂、热镀锌管厂家）是南方一家综合性从制造到加工表处理里的一体的生产厂家，合资建成的生产车间占地80万平方米，为当地最大的生产厂房之一。镀锌钢管生产厂家专业生产销售镀锌管,4分镀锌管,6分镀锌管,8寸镀锌管,镀锌穿线管,热镀锌钢管,镀锌角钢,镀锌槽钢,椭圆管，热镀锌方管、热.</p>
+<p class="line3"><span>2016-08-20 13:27:02 - 
+ 
+<a href="/s-19-267/" target="_blank">山东管材</a> - 
+<a href="/c-47-267/" target="_blank">聊城管材</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582195/" target="_blank" name="pos-1"> 
+
+<img src="http://pic.zhaoshang100.com/00user\uploadpic\cp_006\2016-6-16\162715196ztgg3636.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582194/" target="_blank" name="pos-1"> 
+江山防爆气动注浆泵厂家价格</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+江山防爆气动注浆泵厂家价格
+	原理：
+
+
+	矿用气动注浆泵采用压缩空气为动力源，利用气缸和注浆缸具有较大的作用面积比，从而以较小的气压便可以使缸体产生较高的注射压力。
+
+
+	用途：
+
+
+	适用于矿井、隧道、水利、地铁、建筑、桥梁等施工地点的注浆堵水、填充空隙、加固破碎岩层等工程..</p>
+<p class="line3"><span>2016-08-20 13:27:01 - 
+ 
+<a href="/s-20-1088/" target="_blank">河南泵</a> - 
+<a href="/c-15-1088/" target="_blank">郑州泵</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582194/" target="_blank" name="pos-1"> 
+
+<img src="http://www.zhaoshang100.com/00user/uploadpic/cp_007/2016-8-20/102548520fy1119.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582193/" target="_blank" name="pos-1"> 
+苏州方管格栅安装、铁艺厂家安装</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+
+苏州方管格栅安装、铁艺厂家安装网址 http://www.hggangjiegou.comhttp://www.hggjg.com.cnhttp://www.hengguanggjg.com苏州恒光钢结构工程有限公司&nbsp;&nbsp; 400-001-8862联系人：金工 手机：13338.</p>
+<p class="line3"><span>2016-08-20 13:26:58 - 
+ 
+<a href="/s-14-254/" target="_blank">江苏钢结构</a> - 
+<a href="/c-150-254/" target="_blank">苏州钢结构</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582193/" target="_blank" name="pos-1"> 
+
+<img src="http://www.zhaoshang100.com/00user/uploadpic/cp_007/2016-8-17/153965806hgsteel.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582192/" target="_blank" name="pos-1"> 
+单县(TPU、TT-1055D眸</a>
+</b></p>
+<p class="list-memo">
+
+
+&nbsp;</p>
+<p class="line3"><span>2016-08-20 13:26:55 - 
+ 
+<a href="/s-14-476/" target="_blank">江苏塑料原料</a> - 
+<a href="/c-150-476/" target="_blank">苏州塑料原料</a>  <!---->
+</span></p></td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582191/" target="_blank" name="pos-1"> 
+351*8无缝钢管钝化酸洗无缝钢管切割零售现货</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+
+     无缝钢管：是用10、20、30、35、45等优质碳结钢16Mn、5MnV等低合金结构钢或40Cr、30CrMnSi、45Mn2、40MnB等合金钢热轧或冷轧制成的。10、20等低碳钢制造的无缝管主要用于流体输送管道。45、40Cr等中碳钢制成的无缝管用来制造机械零件，如汽车、拖拉机的受.</p>
+<p class="line3"><span>2016-08-20 13:26:55 - 
+ 
+<a href="/s-19-1022/" target="_blank">山东钢管</a> - 
+<a href="/c-47-1022/" target="_blank">聊城钢管</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582191/" target="_blank" name="pos-1"> 
+
+<img src="http://pic.zhaoshang100.com/00user/uploadpic/cp_006/2016-7-25/092722241sdlcjhjs.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582190/" target="_blank" name="pos-1"> 
+利津到合肥物流公司、24小时服务热线：15275137987.</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+利津到合肥24小时服务热线，15275137987，顺通物流有限公司是经市交通运输管理局审批的特许经营公路的公司货运公司,公司自成立以来始终坚持规范化管理，人性化服务的宗旨，以致远、务实、稳健的经营作风，时刻履行自己的承诺，从而为扩大发展企业规模奠定了坚实的基础，通过我们不断努力已建立起完整的管理机.</p>
+<p class="line3"><span>2016-08-20 13:26:54 - 
+ 
+<a href="/s-19-518/" target="_blank">山东物流</a> - 
+<a href="/c-33-518/" target="_blank">济南物流</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582190/" target="_blank" name="pos-1"> 
+
+<img src="http://pic.zhaoshang100.com/00user/uploadpic/cp_006/2016-6-2/104492287zgh001.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582189/" target="_blank" name="pos-1"> 
+淮安市厚壁无缝钢管价格表销售电话0635-8882019</a>
+</b></p>
+<p class="list-memo">
+
+	聊城市万祥钢管有限公司主营：凤宝、冶钢、宝钢、天津、衡阳、包钢、无锡等几大钢厂无缝管，拥有一座占地二百余亩的制管厂一个。厂内拥有冷拔生产线 2条，可生产规格为：外径6mm-95mm、壁厚1mm-35mm无缝钢管。热轧生产线 &nbsp;4条，生产规格为：外径102mm-457mm、壁厚6mm-.</p>
+<p class="line3"><span>2016-08-20 13:26:54 - 
+ 
+<a href="/s-19-1022/" target="_blank">山东钢管</a> - 
+<a href="/c-47-1022/" target="_blank">聊城钢管</a>  <!---->
+</span></p></td>
+
+</tr>
+
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="30" class="td1">
+<input type="checkbox" name="list_id" value="3280221" /> </td>
+<td class="td3" width="645">
+<p class="line1"><b>
+
+<a href="/g86582188/" target="_blank" name="pos-1"> 
+中国油脂化工原料市场现状分析及前景预测报告2016-2021.</a>
+<font color="#008000">[图]</font> 
+
+</b></p>
+<p class="list-memo">
+中国油脂化工原料市场现状分析及前景预测报告2016-2021年 
+《中》 《信》 《博》 《研》 《研》 《究》 《院》
+【报告编号】:124575
+【出版日期】:2016年8月
+【报告价格】:【纸质版】: 6500元 【电子版】: 6800元 【纸质+电子】: 7000元(来电有折扣)
+.</p>
+<p class="line3"><span>2016-08-20 13:26:50 - 
+ 
+<a href="/s-4-5137/" target="_blank">北京行业报告</a> - 
+<a href="/c-378-5137/" target="_blank">北京市行业报告</a>  <!---->
+</span></p></td>
+
+<td class="td3"  width=120 align="center" style="vertical-align: middle">
+
+<a href="/g86582188/" target="_blank" name="pos-1"> 
+
+<img src="http://www.zhaoshang100.com/00user/uploadpic/cp_007/2016-8-20/102110820orgci8899.jpg" width="80" height="100"  onload = "DrawImage009(this)"  border="0" alt="点击查看大图" ></a>
+</td>
+
+</tr>
+
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="offer" id="ad_sogou2" >
+<tr onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='white'">
+<td width="22" class="td1">　</td>
+<td height=200>
+<table height=220><tr><td>
+<script type="text/javascript">
+var cpro_id="u765363";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"720",rsi1:"220",pat:"1",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#333399",titSU:"0",tft:"0",tlt:"1",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</td></tr></table>
+</td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #E1E1E1;">
+<tr>
+<td align="right" height=30>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<hr color="#336699">
+<p align="center">
+<a target=_blank href="/beijing/">
+北京</a> <a target=_blank href="/shanghai/">
+上海</a> <a target=_blank href="/tianjin/">
+天津</a> <a target=_blank href="/chongqing/">
+重庆</a> <a target=_blank href="/hebei/">
+河北</a> <a target=_blank href="/shanxi/">
+山西</a> <a target=_blank href="/neimenggu/">
+内蒙古</a> <a target=_blank href="/liaoning/">
+辽宁</a> <a target=_blank href="/jilin/">
+吉林</a> <a target=_blank href="/heilongjiang/">
+黑龙江</a> <a target=_blank href="/jiangsu/">
+江苏</a> <a target=_blank href="/zhejiang/">
+浙江</a> <a target=_blank href="/anhui/">
+安徽</a> <a target=_blank href="/fujian/">
+福建</a> <a target=_blank href="/jiangxi/">
+江西</a> <a target=_blank href="/shandong/">
+山东</a> <a target=_blank href="/henan/">
+河南</a> <a target=_blank href="/hubei/">
+湖北</a> <a target=_blank href="/hunan/">
+湖南</a> <a target=_blank href="/guangdong/">
+广东</a> <a target=_blank href="/guangxi/">
+广西</a> <a target=_blank href="/hainan/">
+海南</a> 
+<a target=_blank href="/sichuan/">
+四川</a> <a target=_blank href="/guizhou/">
+贵州</a> <a target=_blank href="/yunnan/">
+云南</a> <a target=_blank href="/xizang/">
+西藏</a> <a target=_blank href="/shanxi1/">
+陕西</a> <a target=_blank href="/gansu/">
+甘肃</a> <a target=_blank href="/qinghai/">
+青海</a> <a target=_blank href="/ningxia/">
+宁夏</a> <a target=_blank href="/xinjiang/">
+新疆</a> <a target=_blank href="/xianggang/">
+香港</a></p>
+</p>
+
+</div>
+<div class="nslog-area" data-nslog-type="1001" id="footer">
+<p align=center>
+<font color="#808080">本站图片和信息均为用户自行发布，用户上传发布的图片或文章如侵犯了您的合法权益，请与我们联系，我们将及时处理，共同维护诚信公平网络环境！
+ 
+</font>
+</p>
+<p align=center>
+　</p>
+<p align="center">
+<font color="#666666">版权所有 &copy;</font><a href="/"><font color="#666666">100招商网</font></font></a><font color="#666666">
+</font>
+<a href="http://www.miibeian.gov.cn/" target="_blank">
+<font color="#666666">滇ICP备13003980号-4</font></font></a><font color="#666666"> 公安备案号：</font></font></font><span id="ctl00_ContentPlaceHolder1_Label8" style="DISPLAY: inline-block">53010203502068</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<b>
+<a rel="nofollow" target="_blank" href="http://www.zhaoshang100.com/fp/">
+<font color="#FF0000">防骗须知</font></a><font color="#FF0000">&nbsp;
+<a href="http://www.zhaoshang100.com/about-5.html" target=_blank>
+<font color="#336699">联系我们</font></a></font></b></div>
+
+
+<div style=" visibility:hidden;">
+<script src="http://s16.cnzz.com/stat.php?id=2791801&web_id=2791801" language="JavaScript"></script>
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/2985576.js"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F228e80b0c104a3607d40e0971902e3ff' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=0&amp;uid=478182" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+		var bds_config = {"bdTop":155};
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+</body>
+</html>

@@ -1,0 +1,234 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+{% block title %}开发中心&nbsp|&nbsp{% endblock %}
+{% block content %}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">
+            </a>
+        </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" style="padding-top: 20px;">
+
+	<div style="width: 100%; padding:10px; float: left; background-color:#F0F0F0;">
+		<div id="legend" style="float: left; width: 100%; height: 120px;">
+			<legend style="font-size: 30px; text-align: center; height: 100px; padding-top: 20px;">工作日志</legend>
+		</div>
+
+
+
+
+		<div id="example_wrapper" style="float: left; width: 100%;" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="example" class="table table-striped table-bordered dataTable no-footer" cellspacing="0" width="100%" role="grid" >
+			<thead>
+				<tr role="row">
+					<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 50px;"><a href="#">日期</a></th>
+					<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 550px;">任务内容</th>
+					<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px;">完成人员</th>
+					<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px;">完成情况</th>
+					<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px;">完成时间</th>
+			</thead>
+
+			<tbody id="tbody_id">
+			<tr>
+				<td>2016/8/20</td>
+				<td>完成对网站检索系统前端框架的更新</td>
+				<td>王亮</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/20</td>
+				<td>完成对关键词迭代更新的算法研究</td>
+				<td>匡俊刚</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/20</td>
+				<td>开始着手后端业务逻辑的开发文档</td>
+				<td>郭青松</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/20</td>
+				<td>完成对多个关键词检索结果分布权重的研究</td>
+				<td>郭青松</td>
+				<td></td>
+				<td></td>
+			</tr>
+            <tr>
+				<td>2016/8/12</td>
+				<td>完成关键词及其权重的数据库搭建相关工作</td>
+				<td>匡俊刚</td>
+				<td></td>
+				<td></td>
+			</tr>
+            <tr>
+				<td>2016/8/12</td>
+				<td>完成与刘畅学长对接，解决段落与语句提取关键词的算法使用问题</td>
+				<td>匡俊刚</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+            <tr>
+				<td>2016/8/12</td>
+				<td>完成利用已有算法对图像进行特征提取并格式化保存的工作</td>
+				<td>王欢</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/20</td>
+				<td>完成对网站管理系统前端框架的更新</td>
+				<td>王亮</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+            <tr>
+				<td>2016/8/12</td>
+				<td>完成对开发人员数据库建设现状的修复完善工作，对服务器端数据库的保存与迁移准备工作</td>
+				<td>匡俊刚</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+            <tr>
+				<td>2016/8/12</td>
+				<td>爬取百度图片（陶瓷金相10，000张）及其相关知识并存储在服务器数据库中</td>
+				<td>匡俊刚</td>
+				<td></td>
+				<td></td>
+			</tr>
+            <tr>
+				<td>2016/8/11</td>
+				<td>完成昵称与账号名的分离并部署到服务器</td>
+				<td>刘奇</td>
+				<td>已完成</td>
+				<td>2016/8/12</td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>完成收藏功能的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>完成文档检索的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>完成好友功能的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>完成审阅功能的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td>已完成</td>
+				<td>2016/8/20</td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>搭建开发文档页面的前端界面并部署</td>
+				<td>王亮</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>搭建开发人员页面的前端界面并部署</td>
+				<td>王亮</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/8/11</td>
+				<td>完成审阅图像页面的前端工作</td>
+				<td>王亮</td>
+				<td>已完成</td>
+				<td>2016/8/15</td>
+			</tr>
+            <tr>
+				<td>2016/7/28</td>
+				<td>完成上传记录中的修改信息的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td>已完成</td>
+				<td>2016/8/11</td>
+			</tr>
+             <tr>
+				<td>2016/7/28</td>
+				<td>完成上传图像的审核页面的搭建</td>
+				<td>王亮</td>
+				<td>已完成</td>
+				<td>2016/8/4</td>
+			</tr>
+             <tr>
+				<td>2016/7/28</td>
+				<td>完成上传记录里修改页面的搭建</td>
+				<td>王亮</td>
+				<td>已完成</td>
+				<td>2016/8/4</td>
+			</tr>
+             <tr>
+				<td>2016/7/28</td>
+				<td>完成爬虫爬取微信公众号的任务</td>
+				<td>匡俊钢</td>
+				<td>已完成</td>
+				<td>2016/8/1</td>
+			</tr>
+            <tr>
+				<td>2016/7/28</td>
+				<td>完成好友数据库的搭建</td>
+				<td>匡俊钢</td>
+				<td>已完成</td>
+				<td>2016/8/12</td>
+			</tr>
+			    <td>2016/7/28</td>
+				<td>完成上传记录的实现并部署到服务器</td>
+				<td>郭青松</td>
+				<td>已完成</td>
+				<td>2016/8/4</td>
+			</tr>
+            <tr>
+				<td>2016/7/28</td>
+				<td>完成图像上传命名规则，解决图像默认JPEG的格式问题</td>
+				<td>郭青松</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2016/7/28</td>
+				<td>完成工作日志页面的设计并部署到服务器</td>
+				<td>王亮</td>
+				<td>已完成</td>
+				<td>2016/7/28</td>
+			</tr>
+
+			</tbody>
+		</table></div></div><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div></div>
+	</div>
+
+
+
+</div>
+
+
+{% endblock %}

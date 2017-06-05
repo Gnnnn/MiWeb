@@ -1,0 +1,230 @@
+{% extends 'miweb/base.html' %}
+{% block title %}首页&nbsp|&nbsp{% endblock %}
+{% block content %}
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}" ><!--小图标-->
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:white;">
+    <div class="container-fluid">
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="bs-example-navbar-collapse-1">
+            {% if loginorout %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/miweb/login/">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                    <li><a href="/">首页</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right" style="padding-top:6px; padding-bottom: 0px; font-family: '微软雅黑';">
+                    <li style="font-size: 15px;" class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="padding: 8px;">
+                            <span class="user-info">
+                                <small>欢迎您，</small>
+                                <span style="font-size:14px; color:">{{ name }}</span>
+                            </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/miweb/personinfo">
+                                    <i class="icon-cog"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/miweb/safepass">
+                                    <i class="icon-user"></i>
+                                    密码修改
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/miweb/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li style="font-size: 15px;" >
+                        <a data-toggle="dropdown"  href="#" style="padding: 8px;">
+                            <span><small>消息(<strong style="color: red;" id="allnewsnumber"></strong>)</small></span>
+
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="messagebox">
+                            <li class="dropdown-header">
+                                <i class="icon-envelope-alt"></i>
+                                <span id="showm"></span>&nbsp;Messages
+                            </li>
+
+                            <li id="fnews">
+
+                            </li>
+
+                            <li id="mnews">
+                            </li>
+
+                            <li id="wmnews">
+                            </li>
+
+                            <li>
+                                <a href="/miweb/personnews">
+                                    查看所有消息
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;"><a href="/miweb/begin" style="padding: 8px;"><small>更多功能</small><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-left: 5px;"></span></a></li>
+                </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<p>
+    <p href="/" style="text-align: center; padding-top: 40px; margin-bottom: -20px; font-family: '微软雅黑'; color: rgb(64,142,185); font-size:58px;height: auto; line-height:25px;">
+        <!--<img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">-->
+        MI<span class="glyphicon glyphicon-search" aria-hidden="true" style="margin:3px 1px 0px 5px;font-size: 75px;"></span>MS
+    </p>
+
+    <div  id="search" style="text-align: center; margin-top: 50px; height: 105px;">
+        <form class="form-inline" role="form" action="/miweb/results/" method="post">
+            {% csrf_token %}
+            <span class="form-group">
+                <input type="text" placeholder="欢迎使用上海大学材料图像检索管理系统" class="input form-control" style="width: 500px; height: 45px; padding-right:35px;" id="your_search" name="your_search">
+                <select class="form-control" style="font-size: 21px; padding: 9px 5px 6px 5px; height: 45px;" name="artiorimg">
+                    <option>图像</option>
+                    <option>资讯</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="height: 45px;font-size: 20px;">检索 &raquo;</button>
+            </span>
+            <a href="javascript: imgsearch()"><span class="glyphicon glyphicon-camera" aria-hidden="true" style=" margin-top:234px; margin-left:-205px; font-size: 30px; color: rgb(64,142,185); position: absolute;"></span></a>
+        </form>
+    </div>
+    <div id="imgdiv" style="z-index:1; background-color: rgba(176,196,222,0.4); width:690px; height: 105px; margin-top: 50px; margin-right: auto; margin-left: auto; display: none;">
+        <div style="position: relative;  font-family: '微软雅黑';">
+            <form style="float: left;" method="post" action="/miweb/resultsimage/" id="fo" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button class="btn btn-default" style=" margin: 30px 30px 30px 30px; font-size:18px; position: absolute; color: rgb(64,142,185);">本地上传<input type="file" name="stfile" id="stfile" size="2" accept="image/*" onchange="javascript:goto()" style="opacity: 0; z-index: 100; position: absolute; width: 100px; margin-top: -26px;">
+                </button>
+            </form>
+            <script>
+                function goto(){
+                    document.getElementById('fo').submit();
+                }
+            </script>
+            <form>
+            <div style="float: left; margin-top: 32px; margin-left: 150px;">
+                <span>
+                    <input type="text" id="stuurl" placeholder="在此处粘贴图片网址" value="" autocomplete="off" class="stuurl" name="objurl" style="width: 430px;height: 36px; margin-right: -6px;">
+                </span>
+                <span>
+                    <button class="btn btn-primary" style="font-size:18px; color :white; height: 36px; padding: 0px 5px 0px 10px; margin-bottom: 5px; float: right; width: 90px;"><input type="submit" id="sbobj" class="stsb2" style="opacity: 0; margin-right: -55px; float: left; margin-top: -50px;">识图一下</button>
+                </span>
+            </div>
+            </form>
+            <a href="javascript: closediv()"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 20px; color: grey;float: right;"></span></a>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: #FFFFFF; margin-top: 10px; text-align: center; width: 760px;">
+        <div class="ht-wrapper -wrapper-negative row" >
+              <div class="col-md-3" >
+
+                        <div class="content" >
+                            <img src="/static/miweb/images/data/beishiti.jpg" width="170px" height="120px"/>
+
+                        </div>
+                  </div>
+              <div class="col-md-3">
+                  <div class="content">
+                      <img src="/static/miweb/images/data/gaofenzi.jpg" width="170px" height="120px"/>
+                  </div>
+              </div>
+            <div class="col-md-3">
+                  <div class="content">
+                      <img src="/static/miweb/images/data/mashiti.jpg" width="170px" height="120px"/>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="content">
+                        <img src="/static/miweb/images/data/taoci.jpg" width="170px" height="120px"/>
+                  </div>
+              </div>
+
+        </div>
+      </div>
+    <div class="container" style="background-color: #FFFFFF; margin-top: 10px; text-align: center; width: 760px;">
+        <div class="ht-wrapper -wrapper-negative row" >
+              <div class="col-md-3" >
+
+                        <div class="content" >
+                            <img src="/static/miweb/images/data/wuji.png" width="170px" height="120px"/>
+
+                        </div>
+                  </div>
+              <div class="col-md-3">
+                  <div class="content">
+                      <img src="/static/miweb/images/data/zhuguangti.jpg" width="170px" height="120px"/>
+                  </div>
+              </div>
+            <div class="col-md-3">
+                  <div class="content">
+                      <img src="/static/miweb/images/data/1469623658984pic.jpeg" width="170px" height="120px"/>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="content">
+                        <img src="/static/miweb/images/data/1469623666695pic.jpeg" width="170px" height="120px"/>
+                  </div>
+              </div>
+
+        </div>
+      </div>
+
+</div>
+
+<script>
+$(document).ready(
+    homenews()
+);
+
+function homenews(){
+   $.post("/miweb/controller/con_rightnews/",
+    {
+        ntag:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#allnewsnumber").text(data[0].long);
+        showm
+        if (data[0].friendnews > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].friendnews + "<span>条待处理消息</span></a>");
+        }
+        if (data[0].message > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].message + "<span>条未阅读通知</span></a>");
+        }
+        if (data[0].wmessage > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>系统向您发来了</span>" + data[0].wmessage + "<span>条消息</span></a>");
+        }
+    });
+}
+function imgsearch(){
+    $("#search").css("display","none");
+    $("#imgdiv").fadeIn(1000);
+}
+function closediv(){
+    $("#search").css("display","block");
+    $("#imgdiv").hide();
+}
+</script>
+{% endblock %}

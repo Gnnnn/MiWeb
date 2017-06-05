@@ -1,0 +1,105 @@
+{% extends 'miweb/base_person.html' %}
+{% block content_person %}
+
+<div class="breadcrumbs" id="breadcrumbs" style="margin-left: -30px; margin-top: -10px; margin-right: -20px;">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/miweb/">主页</a>
+        </li>
+
+        <li>
+            <a href="/miweb/begin/">后台管理</a>
+        </li>
+
+        <li>
+            上传中心
+        </li>
+        <li>
+            图像上传
+        </li>
+    </ul><!-- .链接 -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+
+<div class="container" style="padding-top: 0px;">
+    <div style=" width: 970px; padding:10px; float: left;">
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <fieldset>
+
+                <h5 style="color: red;">{{ mess }}</h5>
+                <div class="form-group">
+                    <label >选择图片</label>
+                    <input name="pic_way"  id="pic_way" type="file"  accept="image/*"/>
+                    <img name="showimg" id="showimg" src="" style="display:none;" alt="预览图片" />
+                </div>
+                <div class="form-group">
+                    <label>图片名称</label>
+                    <input type="text" class="form-control"  placeholder="" id="pic_name" name="pic_name">
+                </div>
+                <div class="form-group">
+                    <label>图片标号</label>
+                    <input type="text" class="form-control"  value="{{ picid }}" id="pic_code" name="pic_code" readonly="true">
+                </div>
+                <div class="form-group">
+                    <label>作者</label>
+                    <input type="text" class="form-control"  placeholder="" value="{{ author }}" id="pic_author" name="pic_author" readonly="true">
+                </div>
+                <div class="form-group">
+                    <label>机构</label>
+                    <input type="text" class="form-control"  placeholder="" value="{{ job }}" id="pic_job" name="pic_job">
+                </div>
+                <div class="form-group">
+                    <label>仪器</label>
+                    <input type="text" class="form-control"  placeholder="" id="pic_tool" name="pic_tool">
+                </div>
+                <div class="form-group">
+                    <label>摘要</label>
+                    <input type="text" class="form-control"  placeholder="" id="pic_abstract" name="pic_abstract">
+                </div>
+                <div class="form-group">
+                    <label>图片详情</label>
+                    <textarea style="border-radius:4px; overflow: auto; width:100%; height: 120px; margin-top: 20px; resize:none;" class="form-control"  placeholder="" id="pic_content" name="pic_content"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>选择&nbsp&nbsp</label>
+                    <select name="plevel">
+                        <option value="A">公开给所有人</option>
+                        <option value="B">公开给所有好友</option>
+                        <option value="E">不公开</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">上传</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#uploadcenter").attr({
+        "class" : "active open",
+    });
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link href="{% static 'miweb/css/result.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}" ><!--小图标-->
+{% endblock %}
+{% block title %}检索结果&nbsp|&nbsp{% endblock %}
+{% block content %}
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF; height: auto;">
+   <div class="container-fluid" style="height: auto;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="margin-left: 10px;">
+            <a class="navbar-brand" href="/" style=" padding: 7px 5px 5px 5px; font-family: '微软雅黑'; color: rgb(64,142,185); font-size:28px;height: auto; line-height:25px;">
+                <!--<img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">-->
+                MI<span class="glyphicon glyphicon-search" aria-hidden="true" style="margin:3px 3px 0px 5px;font-size: 35px;"></span>MS
+                <br><span style="font-size: 1px;">材料图像检索管理系统</span>
+            </a>
+        </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" role="search" style="margin-top:16px; margin-bottom:10px;" action="/miweb/results/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ search_content }}" id="your_search" name="your_search" style="width: 300px;">
+                </div>
+                <select class="form-control" style="font-size: 17px; margin-top: 0px; padding: 7px 4px 3px 5px; height: auto;" name="artiorimg">
+                    <option>资讯</option>
+                    <option>图像</option>
+                </select>
+                <button type="submit" class="btn btn-primary" >检索 &raquo;</button>
+                <br>
+                <div style="font-size: 10px; margin-top:6px; margin-left: 3px;">
+                    <span style="color: black;">热门搜索：</span>
+                    {% for i in hotword %}
+                    <span style="color: black;">{{ i.hotwords }}</span>
+                    {% endfor %}
+                </div>
+            </form>
+            {% if loginorout %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/miweb/login/">登录</a></li>
+                    <li><a href="/miweb/signup">注册</a></li>
+                    <li><a href="/">首页</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right" style="font-family: '微软雅黑';">
+                    <li style="font-size: 15px;" class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="padding: 8px;">
+                            <span class="user-info">
+                                <small>欢迎您，</small>
+                                <span style="font-size:14px; color:">{{ name }}</span>
+                            </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/miweb/personinfo">
+                                    <i class="icon-cog"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/miweb/safepass">
+                                    <i class="icon-user"></i>
+                                    密码修改
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/miweb/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;" >
+                        <a data-toggle="dropdown"  href="#" style="padding: 8px;">
+                            <span><small>消息(<strong style="color: red;" id="allnewsnumber"></strong>)</small></span>
+
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="messagebox">
+                            <li class="dropdown-header">
+                                <i class="icon-envelope-alt"></i>
+                                <span id="showm"></span>&nbsp;Messages
+                            </li>
+
+                            <li id="fnews">
+
+                            </li>
+
+                            <li id="mnews">
+                            </li>
+
+                            <li id="wmnews">
+                            </li>
+
+                            <li>
+                                <a href="/miweb/personnews">
+                                    查看所有消息
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="font-size: 15px;"><a href="/miweb/begin" style="padding: 8px;"><small>更多功能</small><span class="glyphicon glyphicon-th" aria-hidden="true" style="margin-left: 5px;"></span></a></li>
+                </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div  style="padding-top: 26px;">
+    <div style="float: left; width: 970px;">
+        {% ifequal isnullmess  1 %}
+        <hr style="margin: 0px;margin-left: 165px;"><h5 style="margin-left: 170px;">很抱歉， 未检索到符合的内容</h5><hr style="margin: 0px;margin-left: 165px;">
+        {% endifequal %}
+        {% ifequal isnullmess  2 %}
+        <hr style="margin: 0px;margin-left: 165px;"><h5 style="margin-left: 170px;">请输入检索内容，重新检索</h5><hr style="margin: 0px;margin-left: 165px;">
+        {% endifequal %}
+
+        {% for article in posts %}
+        <div style="margin-left: 165px;width:700px">
+            <h3 style=""><a href="{{ article.wzurl }}" style="font-family: '宋体'; color: black;">{{ article.title }}</a></h3>
+            <p style="font-size:10px; color: green; margin-top: -10px;margin-left: 5px;">{{ article.wzurl }}<span style="margin-left: 20px;">来源：材料牛</span></p>
+            <p style="margin-top: -10px; font-size: 15px;width:700px;word-break:break-all; text-indent: -10px; margin-left: 3px;">&nbsp&nbsp{{ article.abstract }}</p>
+            <hr>
+        </div>
+        {% endfor %}
+
+        <div style="width: 100%; height: auto; float: left">
+            <nav style="text-align: center;">
+                <ul class="pagination">
+                    {% if curPage > 1 %}
+                        <li>
+                            <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageUp&&search={{ search_content }}&&aori=1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                    {% for pl in pagelist %}
+                        {% ifnotequal pl curPage %}
+                            <li><a href="?curPage={{ pl }}&&allPage={{ allPage }}&&pageType=pageTo&&search={{ search_content }}&&aori=1">{{ pl }}</a></li>
+                        {% else %}
+                            <li class="active"><a href="#">{{ pl }}<span class="sr-only">(current)</span></a></li>
+                        {% endifnotequal %}
+                    {% endfor %}
+                    {% if curPage < allPage %}
+                        <li>
+                            <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageDown&&search={{ search_content }}&&aori=1" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="screen" style="float: right; height: 100%; width: 175px; background-color: white; margin-left: 10px; margin-top: 0px; text-align: center;">
+    </div>
+</div>
+
+<script>
+$(document).ready(
+    homenews()
+);
+
+function homenews(){
+   $.post("/miweb/controller/con_rightnews/",
+    {
+        ntag:"0",
+        userid:"{{ userid }}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    function(data,status){
+        $("#allnewsnumber").text(data[0].long);
+        $("#showm").text(data[0].long);
+        if (data[0].friendnews > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].friendnews + "<span>条待处理消息</span></a>");
+        }
+        if (data[0].message > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>您有</span>" + data[0].message + "<span>条未阅读通知</span></a>");
+        }
+        if (data[0].wmessage > 0){
+            $("#fnews").append("<a href=\"/miweb/personnews\"><span>系统向您发来了</span>" + data[0].wmessage + "<span>条消息</span></a>");
+        }
+    });
+}
+</script>
+{% endblock %}

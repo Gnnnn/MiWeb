@@ -1,0 +1,443 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'miweb/css/dashboard.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}" >
+    <!--[if lte IE 7]>
+	  <link rel="stylesheet" href="{% static 'assets/css/font-awesome-ie7.min.css' %}" />
+	<![endif]-->
+	<!-- page specific plugin styles -->
+	<!-- fonts -->
+	<link rel="stylesheet" href="{% static 'assets/css/cyrillic.css' %}"/>
+	<!-- ace styles -->
+	<link rel="stylesheet" href="{% static 'assets/css/ace.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/ace-rtl.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'assets/css/ace-skins.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'assets/css/ace-ie.min.css' %}" />
+	<script src="{% static 'assets/js/ace-extra.min.js' %}"></script> <!--导航边栏的收缩-->
+	<script src="{% static 'assets/js/html5shiv.js' %}"></script>
+	<script src="{% static 'assets/js/respond.min.js' %}"></script>
+{% endblock %}
+{% block title %}个人中心&nbsp|&nbsp{% endblock %}
+{% block content %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" style="padding-top: 10px;font-family: '微软雅黑'  ">
+                <!--<img style="margin-top: -15px;" height="50px" alt="Brand" src="{% static 'miweb/images/logo.png' %}">-->
+                <span class="glyphicon glyphicon-search" aria-hidden="true" style="height: 1px;"></span>&nbsp&nbsp图像检索系统
+            </a>
+        </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="green" style="height: 50px;">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-envelope icon-animated-vertical" style="margin-top:16px;"></i>
+								<span class="badge badge-success" style="margin-top:-5px;">1</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+								<li class="dropdown-header">
+									<i class="icon-envelope-alt"></i>
+									1 Messages
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="" class="msg-photo" alt="" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">系统管理员:</span>
+												该功能正在部署中...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>a moment ago</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="inbox.html">
+										查看全部消息
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="light-blue" style="height: 50px;">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<span class="user-info" style="margin-top:4px;">
+									<small>欢迎您，</small>
+									{{ name }}
+								</span>
+
+								<i class="icon-caret-down" style="margin-top:16px;"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/miweb/personinfo">
+                                    <i class="icon-cog"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/miweb/safepass">
+                                    <i class="icon-user"></i>
+                                    密码修改
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/miweb/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- 消息栏 -->
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+    <div class="main-container" id="main-container" style="background-color: #F2F2F2;">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar" style="margin-top: -70px;">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list" style="margin:0px -20px 0px -20px;">
+						<li class="active">
+							<a href="/miweb/begin/">
+								<i class="icon-dashboard"></i>
+								<span class="menu-text"> 后台管理 </span>
+							</a>
+						</li>
+
+						<li id="personcenter">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text ">个人中心</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="/miweb/personinfo">
+										<i class="icon-double-angle-right"></i>
+										个人资料
+									</a>
+								</li>
+
+                                <li>
+									<a href="/miweb/personsearch">
+										<i class="icon-double-angle-right"></i>
+										足迹
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li id="mynews">
+							<a href="/miweb/personnews">
+								<i class="icon-comments"></i>
+								<span class="menu-text">消息通知</span>
+
+							</a>
+
+						</li>
+
+						<li id="friendcenter">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-group"></i>
+								<span class="menu-text">好友中心</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+							<ul class="submenu">
+								<li>
+									<a href="/miweb/personfriends/">
+										<i class="icon-double-angle-right"></i>
+										好友管理
+									</a>
+								</li>
+
+								<li>
+									<a href="/miweb/invitecode/">
+										<i class="icon-double-angle-right"></i>
+										邀请码
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li id="mycollect">
+							<a href="/miweb/personcollect">
+								<i class="icon-heart"></i>
+								<span class="menu-text">我的收藏</span>
+
+							</a>
+
+						</li>
+
+						<li id="uploadcenter">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cloud-upload"></i>
+								<span class="menu-text"> 上传中心 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="/miweb/upload/">
+										<i class="icon-double-angle-right"></i>
+										图像上传
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										数据库上传
+									</a>
+								</li>
+
+                                <li>
+									<a href="/miweb/upload/record">
+										<i class="icon-double-angle-right"></i>
+										上传记录
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li id="safecenter">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cog"></i>
+								<span class="menu-text"> 安全中心 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="/miweb/safepass">
+										<i class="icon-double-angle-right"></i>
+										密码修改
+									</a>
+								</li>
+
+								<li>
+									<a href="/miweb/saferealname/">
+										<i class="icon-double-angle-right"></i>
+										实名认证
+									</a>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<li id="pic">
+							<a href="#">
+								<i class="icon-bar-chart"></i>
+								<span class="menu-text"> 图像处理 </span>
+							</a>
+						</li>
+
+                        <li id="managecenter">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 网站管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="reviewcenter">
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+										图像审阅
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+										<li>
+											<a href="/miweb/review/">
+												等待审阅
+											</a>
+										</li>
+
+										<li>
+											<a href="/miweb/review/">
+												审阅记录
+											</a>
+										</li>
+										<li>
+											<a href="#" >
+												审阅标准
+											</a>
+										</li>
+										<li>
+											<a href="#" >
+												审阅人员
+											</a>
+										</li>
+									</ul>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										权限控制
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										评论管理
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-eye-open"></i>
+								<span class="menu-text">开发中心</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="">
+										<i class="icon-double-angle-right"></i>
+										开发人员
+									</a>
+								</li>
+
+								<li>
+									<a href="">
+										<i class="icon-double-angle-right"></i>
+										开发文档
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										技术交流
+									</a>
+								</li>
+
+                                <li>
+									<a href="/miweb/worklog">
+										<i class="icon-double-angle-right"></i>
+										工作日志
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li id="myadvice">
+							<a href="/miweb/advices">
+								<i class="icon-edit"></i>
+								<span class="menu-text">意见反馈</span>
+
+							</a>
+
+						</li>
+
+						<li id="myabout">
+							<a href="/miweb/about">
+								<i class="icon-book"></i>
+								<span class="menu-text">相关介绍</span>
+							</a>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+
+				</div>
+
+				<div class="main-content">
+
+
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+                                {% block content_person %}
+
+                                {% endblock %}
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<script src="{% static 'assets/js/jquery-2.0.3.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<!-- page specific plugin scripts -->
+		<!-- ace scripts -->
+		<script src="{% static 'assets/js/ace-elements.min.js' %}"></script>
+		<script src="{% static 'assets/js/ace.min.js' %}"></script><!-- 下拉菜单-->
+		<!-- inline scripts related to this page -->
+        <script>var _hmt = _hmt || [];(function(){var hm=document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a43c39da34531f4da694d4499c5614d4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();</script>
+
+{% endblock %}

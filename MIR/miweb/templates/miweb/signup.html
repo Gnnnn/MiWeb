@@ -1,0 +1,27 @@
+{% extends 'miweb/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'miweb/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+{% block title %}注册&nbsp|&nbsp{% endblock %}
+{% block content %}
+<div class="container">
+    <form action="" method="post" class="form-signin" style="text-align: center;">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">注册</h2>
+        <label for="your_email" class="sr-only">Your email: </label>
+        <input id="your_email" placeholder="邮箱" type="email" name="your_email" class="form-control" value="{{ email }}">
+        <label for="your_name" class="sr-only">Your name: </label>
+        <input id="your_name" placeholder="昵称" type="text" name="your_name" class="form-control" value="{{ usernicheng }}">
+        <label for="your_password" class="sr-only">Your password: </label>
+        <input id="your_password" placeholder="密码" type="password" name="your_password" class="form-control">
+        <label for="your_invitecode" class="sr-only">Your invite_code: </label>
+        <input id="your_invitecode" placeholder="邀请码" type="text" name="your_invitecode" class="form-control" >
+        <h5 style="color: red;">{{ mess }}</h5>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    </form>
+    <div style="max-width: 300px; text-align: center; margin: auto;">
+        <button class="btn btn-lg btn-primary btn-block" style="width: 300px; text-align: center;" onClick="location.href='/'">返回</button>
+    </div>
+</div>
+{% endblock %}
